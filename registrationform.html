@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Social Reading Club | Registration Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Registration Form</h1>
+
+        <p>If you wish to join the Social Reading Club, please fill out this form:</p>
+
+        <form action=".">
+
+            <p>
+                Name: <input type="text" name="name" autofocus required />
+                <br>
+                Last Name: <input type="text" name="last-name" required />
+                <br>
+                Age:<input type="number" name="age" min="18" max="100" required />
+                <br>
+                Gender:
+                <input type="radio" name="gender" value="Male">Male 
+                <input type="radio" name="gender" value="Female">Female
+                <br>
+                Email: <input type="email" name="email" />
+                <br>
+                Phone Number: <input type="tel" name="tel" required />
+                <br>
+                Favorite Book: <input type="text" name="fav-book" />
+                <br>
+                Venue and session you are applying to:
+                <select name="session" required>
+                    
+                    <option value="None-selected">Please select below</option>
+                    
+                </select>
+                <br>
+                By sending this form you accept the terms of service 
+                <input type="checkbox" name="terms" value="terms-service" required/>
+                <br>
+                <input type="submit" value="Send" />
+                <input type="reset" value="Reset" />
+            </p>
+
+
+        </form>
+    </body>
+</html>
