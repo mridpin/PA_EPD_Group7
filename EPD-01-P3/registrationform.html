@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Registration Form</h1>
+        <h1 id="top">Registration Form</h1>
 
         <p>If you wish to join the Social Reading Club, please fill out this form:</p>
 
@@ -38,11 +38,35 @@ and open the template in the editor.
                 <select name="session" required>
                     
                     <option value="None-selected">Please select below</option>
+                    <optgroup label="Building nº 13">
+                        
+                        <option value="13-t-f-1">Tuesday and Friday from 11:30-13:30</option>
+                        <option value="13-t-f-2">Tuesday and Friday from 17:00-19:00</option>
+                        <option value="13-m-w">Monday and Wednesday from 14:00-15:30</option>
+                        
+                    </optgroup>
+                    
+                    <optgroup label="Building nº 14">
+                        
+                        <option value="14-m-w">Saturday from 10:00-12:00</option>
+                        
+                    </optgroup>
+                    
+                    <optgroup label="Building nº 15">
+                        
+                        <option value="15-m-t-1">Monday and Thursday 18:30-20:00</option>
+                        <option value="15-m-t-2">Monday and Thursday 13:00-14:00</option>
+                        <option value="15-w-s">Wednesday and Sunday from 16:00-17:30</option>
+                        
+                    </optgroup>
                     
                 </select>
                 <br>
                 By sending this form you accept the terms of service 
                 <input type="checkbox" name="terms" value="terms-service" required/>
+                <br>
+                Would you like to be subscribed to our newsletter? 
+                <input type="checkbox" name="newsletter" value="news-letter"/>
                 <br>
                 <input type="submit" value="Send"/>
                 <input type="reset" value="Reset" />
@@ -50,7 +74,13 @@ and open the template in the editor.
                 
             </p>
             
-            <footer><a href="index.html"> Return to the main page</a></footer>
+            <footer>
+            
+            <a href="#top"> Return to the top of the page</a> -
+            <a href="index.html"> Return to the main page</a>
+        
+        
+        </footer>
 
 
         </form>
