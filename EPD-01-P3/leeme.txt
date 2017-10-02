@@ -1,0 +1,5 @@
+Etiquetas utilizadas:
+
+<article>: Utilizada en la página availablebooks para separar cada uno de los libros disponibles en el club de lectura. Cada artículo está compuesto por un título, una miniatura de la portada del libro y una pequeña descripción del libro.
+
+<ul> y <li>: Utilizadas en las páginas index y availablebooks para crear listas no ordenadas y ordenadas de los libros disponibles del club y los distintos enlaces de la página respectivamente.
