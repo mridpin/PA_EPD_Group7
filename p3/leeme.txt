@@ -1,0 +1,29 @@
+﻿Etiquetas utilizadas:
+
+1. <header>: Empleado en todas las paginas, esta etiqueta contiene el titulo de la pagina junto con un logotipo de la universidad.
+
+2. <article>: Utilizada en la página availablebooks para separar cada uno de los libros disponibles en el club de lectura. Cada artículo está compuesto por un título, una miniatura de la portada del libro y una pequeña descripción del libro.
+
+3. <ul> y <ol>: Utilizadas en las páginas index y availablebooks para crear listas no ordenadas y ordenadas de los libros disponibles del club y los distintos enlaces de la página respectivamente.
+
+4. <figure>: Empleado en la página availablebooks para insertar imágenes que van a tener una caption debajo de ella.
+
+5. <figcaption>: Se utiliza para insertar una caption debajo de las imágenes en la página availablebooks
+
+6. <footer>: Utilizado en todas las páginas (salvo en la página principal) y contiene dos opciones, un enlace a la parte superior de la página y otro enlace que redirige a la página principal.
+
+7. <strong> y <em>: Usado en diversas páginas para añadir palabras en negrita y cursiva.
+
+8. <form>: Empleado en la página registrationform para crear un formulario de registro al club social.
+
+9. <table>: Utilizado para crear una tabla en la página sessions para informar de los distintos lugares y las sesiones donde se llevan a cabo las reuniones del club de lectura.
+
+10. <iframe>: Se usa para insertar un vídeo en la página about.
+
+11. <select>: Utilizado varias veces en la página registrationform para dar una opción al usuario dentro del formulario que tiene que rellenar.
+
+12. <optgroup>: Empleado en la página registrationform para crear un grupo de opciones y hacer que asi el usuario pueda elegir más cómodamente la sesión a la que se quiere inscribir.
+
+13. <nav>: Usado para añadir una lista de navegación de toda la página en cada página.
+
+14. <aside>: Se utiliza para añadir un vídeo de publicidad en el lateral de todas las páginas.
