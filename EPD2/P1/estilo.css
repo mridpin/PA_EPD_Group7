@@ -1,0 +1,85 @@
+.cabecera,ul,.pie{
+            background-color: rgb(0,0,128);
+            
+            
+        }
+        
+        .cabecera,.tituloaviso,.cuerpoaviso{
+            text-align: center;
+        }
+        
+        
+        .cabecera,.tituloaviso{
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        
+        ul,.pie,.tituloaviso,.cuerpoaviso{
+            position:relative;
+        }
+        
+        .cabecera{
+            color: white;
+        }
+        
+        body{
+            
+            background: rgb(211,211,211);
+        }
+        
+        .logo{
+            padding-left: 60px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: white;
+            max-width: 135px;
+        }
+        ul{
+            bottom:15px;
+            padding-top: 10px;
+            max-width: 155px;
+        }
+        
+        li{
+            color: yellow;
+            
+        }
+        
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        
+        .pie{
+            color: yellow;
+            text-align: right;
+            bottom:32px
+        }
+        
+        .central{
+            background-color: rgb(224,255,255);
+            border-style: double;
+            border-color: red;
+            border-width: 5px;
+            position:fixed;
+            top: 69px;
+            left: 220px;   
+            float:right;
+            padding-top: 30px;
+            padding-right: 620px;
+            padding-bottom: 20px;
+            padding-left: 80px;
+        }
+        
+        .tituloaviso{
+            font-size: 2em;
+        }
+        
+        .cuerpoaviso{
+            font-size: 16px;
+        }
+        
+        .tituloaviso,.cuerpoaviso{
+            margin:auto;
+            position:relative;
+        }
