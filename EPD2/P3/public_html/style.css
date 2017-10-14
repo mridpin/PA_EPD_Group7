@@ -1,4 +1,124 @@
+/*
+Cuantos atributos por poner, por poner ponemos hasta animaciones que no las
+hemos dado
+*/
+
 body{
     font-family:  sans-serif;
+    overflow-x:hidden;
+    background: rgb(232,240,254);
 }
 
+ul{
+    list-style: none;
+    text-align: center;
+}
+
+li{
+    text-decoration: underline;
+    font-style: oblique;
+}
+
+.header-2{
+    font-size: 25px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.title{
+    font-size:45px;
+    text-align: center;
+    text-decoration: underline;
+    color:grey;
+    margin-bottom: 3%;
+    text-shadow: 2px 2px 30px black;
+}
+
+.image{
+    margin: auto;
+    width: 45%;
+    margin-bottom: 1%;
+    box-shadow: -10px 10px 5px #888888;
+    transform: scale(0.6,0.6);
+    transform: skewX(10deg);
+}
+
+.logo{ 
+    margin: auto;
+    width: 47%;
+    box-shadow: -10px 10px 15px #888888;
+    transform: rotate(5deg);
+}
+
+.header{
+    font-style: italic;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.columns,.box{
+    border:solid;
+    box-shadow: 10px 10px 5px #888888;
+    background: linear-gradient(rgb(66,133,244),lightblue,white);
+    border-radius: 12px;
+}
+
+.columns{
+    padding: 3%;
+    box-sizing: border-box;
+    
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+    width: 100%;
+    /*
+    Gracias a esta propiedad, podemos decir cuántas columnas queremos
+    */
+    columns: 2;
+    
+}
+
+.box{
+    
+    width: 60%;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+    
+}
+
+.column-one {
+    width: 50%;
+    margin-left: 18%;
+    
+}
+
+.column-two {
+    width:65%;
+    margin-left: 20%;
+    
+}
+
+p,footer{
+    text-align: justify;
+    text-align: center;
+}
+
+
+footer{
+    background-color:lightgray;
+    font-style: oblique;
+    opacity: 0.7;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color:red;
+    
+}
