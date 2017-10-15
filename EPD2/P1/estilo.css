@@ -27,7 +27,7 @@
             color:rgb(0,0,128);
         }
         
-        ul,.pie{
+        ul{
             position:relative;
         }
         
@@ -55,9 +55,14 @@
             max-width: 135px;
         }
         .lateral{
-            bottom:15px;
-            max-width: 13.5%;
+            width: 18%;
             color: yellow;
+            float:left;
+        }
+        
+        .central{
+            width: 83%;
+            margin-left: 20%;
         }
         
         a{
@@ -70,7 +75,7 @@
         .pie{
             color: yellow;
             text-align: right;
-            bottom:32px
+            padding-top: 0;
         }
         
         .aviso,.bloqueexplicacion{
@@ -111,7 +116,8 @@
         }
         
         .cuerpoaviso{
-            font-size: 16px;
+            font-size: 18px;
+            margin-bottom: 5%;
         }
         
         h2{
@@ -183,6 +189,7 @@
             max-width: 92.5%;
             margin-left: 1.5%;
         }
+        
         
         #enunciado{
             
