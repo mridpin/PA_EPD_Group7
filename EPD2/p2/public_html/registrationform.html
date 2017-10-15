@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+Grupo 7
+-->
+<html>
+    <head>
+        <title>Social Reading Club | Registration Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" type="text/css" />
+    </head>
+    <body>
+        
+        <div class="block">
+        
+        <h1 id="top">Registration Form For Our Reading Club</h1>
+        
+        
+        <br>
+        
+        <nav>
+            <div class="logo2">
+            <img src="images/olavide-logo2.jpg" alt="university-logo-2">
+            </div>
+        <h2>Available Pages</h2>
+        <ol>
+            
+            <li><a href="availablebooks.html">Available Books</a></li>
+            <li><a href ="sessions.html">Available Venues And Sessions</a></li>
+            <li><a href="registrationform.html">Registration Form</a></li>
+            <li><a href="about.html">About us</a></li>
+            
+        </ol>
+            
+        </nav>
+        
+        
+        <div class="popup">
+            <h3>If you wish to join the Social Reading Club, please fill out this form:</h3>
+            <p>Red borders mean that it's a required field Blue borders mean that it's a optional field</p>
+        </div>
+
+        <div class="formbox">
+        
+        
+        <form action=".">
+                <label for="name">Name:</label> 
+                <input type="text" id="name" name="name" required />
+                <label for="last-name">Last Name: </label>
+                <input type="text" id="last-name" name="last-name" required />
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="18" max="100" required />
+                Gender:
+                <input type="radio" name="gender" value="Male">Male 
+                <input type="radio" name="gender" value="Female">Female
+                
+                
+                <br>
+                
+                <label for="email">Email:</label> 
+                <input type="email" id="email" name="email" />
+                <label for="tel">Phone Number:</label> 
+                <input type="tel" id="tel" name="tel" required />
+                <label for="fav-book">Favorite Book:</label>
+                <input type="text" id="fav-book" name="fav-book" />
+                <label for="fav-genre">Favorite Genre:</label>
+                <select id="fav-genre" name="fav-genre">
+                    
+                    <option value="None-selected">Please select below</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="romance">Romance</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="action">Action</option>
+                    <option value="horror">Horror</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="scifi">Science Fiction</option>
+                    
+                    
+                </select>
+                <label for="session">Venue and session you are applying to:</label>
+                <select id ="session" name="session" required>
+                    
+                    <option value="">Please select below</option>
+                    <optgroup label="Building nº 13">
+                        
+                        <option value="13-t-f-1">Tuesday and Friday from 11:30-13:30</option>
+                        <option value="13-t-f-2">Tuesday and Friday from 17:00-19:00</option>
+                        <option value="13-m-w">Monday and Wednesday from 14:00-15:30</option>
+                        
+                    </optgroup>
+                    
+                    <optgroup label="Building nº 14">
+                        
+                        <option value="14-m-w">Saturday from 10:00-12:00</option>
+                        
+                    </optgroup>
+                    
+                    <optgroup label="Building nº 15">
+                        
+                        <option value="15-m-t-1">Monday and Thursday 18:30-20:00</option>
+                        <option value="15-m-t-2">Monday and Thursday 13:00-14:00</option>
+                        <option value="15-w-s">Wednesday and Sunday from 16:00-17:30</option>
+                        
+                    </optgroup>
+                    
+                </select>
+                
+                <label for="terms">By sending this form you accept the terms of service</label>
+                <input type="checkbox" id="terms" name="terms" value="terms-service" required/>
+                
+                <label for="newsletter">Would you like to be subscribed to our newsletter?</label>
+                <input type="checkbox" id="newsletter" name="newsletter" value="news-letter"/>
+                <div class="buttons">               
+                <input type="submit" value="Send"/>
+                <input type="reset" value="Reset" />
+                </div>
+
+        </form>
+            
+        </div>
+            
+            <footer>
+            
+            <a href="#top"> Return to the top of the page</a> -
+            <a href="index.html"> Return to the main page</a>
+        
+        
+        </footer>
+        </div>
+        <aside>
+        <video width="400" controls>
+            
+            <source src="https://archive.org/download/video_rapid_201703/video_rapid_240x350.mp4" type="video/mp4">
+            
+            
+        </video>
+        </aside>
+    </body>
+</html>
