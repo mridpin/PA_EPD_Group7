@@ -1,0 +1,77 @@
+Número de Estilos Utilizados: 
+
+1.   body
+2.   h1
+3.  .block
+3.   nav
+4.   footer
+5.   video
+6.  .logo
+7.   .logo2
+8.   .logo img2
+9.   table
+10.  th,td
+11.  th
+12.  a img
+13. .notice
+14.  figcaption
+15.  ul
+16.  article
+17.  #about
+18.  textarea
+19. .formbox
+20.  input[type=submit], input[type=reset
+21.  .buttons
+22.  .popup p
+23.  select
+24.  input[type=checkbox]
+25.  input[type=radio]
+26.  input[type=text],input[type=email],input[type=number],input[type=tel
+27.  label
+28.  a:visited
+29.  a:active
+30.  a:link
+31.  a:hover
+32.  input:focus
+33.  input[type=submit]:hover, input[type=reset]:hover
+34.  input[type=text]:required,input[type=number]:required,input[type=tel]:required,select:required
+35.  input[type=text]:optional,select:optional,input[type=email]:optional
+36.  .popup:hover p
+37.  h1:hover,h2:hover
+
+Número de Atributos utilizados:
+
+1.  background-color
+2.  color
+3.  font-family
+4.  text-align
+5.  text-decoration
+6.  cursor
+7.  display
+8.  max-width
+9.  width
+10. height
+11. margin-left
+12. margin-right
+13. margin-bottom
+14. margin-top
+15. margin
+16. padding
+17. padding-top
+18. padding-right
+19. padding-bottom
+20. padding-left
+21. position
+22. left
+23. top
+24. right
+25. float
+26. border-style
+27. border-width
+28. border-color
+29. border-radius
+30. border
+31. box-shadow
+32. box-sizing
+33. border-collapse
+34. list-style-type

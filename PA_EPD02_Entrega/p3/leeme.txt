@@ -1,0 +1,49 @@
+Por orden de aparición en stylesheet.css
+
+
+Propiedades CSS3:
+
+	text-decoration: Borra o añade el subrayado de los enlaces.
+
+	margin: Utilizado para añadir distintos margenes a los elementos.
+
+	font-family: Todos los articulos comparten una fuente sans-serif.
+
+	color: Cambia el color del texto de los articulos. En general, se utiliza un gris muy oscuro.
+
+	position: relative;: Utilizado en h2 pero no cambia nada, es necesario para la posición relativa de las flechas azules.
+
+	border-bottom: Utilizado para agregar una linea separadora gris a los h2.
+
+	overflow: hidden;: Utilizado para esconder debajo de las imágenes el separador anterior.
+
+	padding-bottom: Utilizado para añadir un poco de espacio en blanco entre h2 y las lineas separadoras.
+
+	line-height: Empleado para añadir un poco espacio entre el texto de <p>.
+
+	font-weight: Utilizado en varias instancias para cambiar el grosor del texto. En general, <p> se ha hecho un poco más grueso mientras que los <hn> se han hecho más fino.
+
+	font-size: Utilizado en varias ocasiones para cambiar el tamaño del texto. La unidad utilizada ha sido em.
+
+	float: right;: Utilizado para hacer floar lasa fotogracias junto con el texto.
+
+	max-width: 400px;: Así el logotipo no es tan grande.
+
+	max-width: 100%; & height:auto;: Utilizado para hacer que las fotografias se cambien junto con el tamaño de la ventana.
+
+	right: 0; & position: absolute;: Empleado para que las flechas azules se queden en la parte derecha.
+
+	border-radius: 50%;: Añade un círculo al fondo del icono de las flechas.
+
+	background-color: Utilizado para añadir un color de fondo a las flechas presionadas.
+
+	clear: both;: Empleado para despejar los lados del footer.
+
+CSS3 PSEUDOCLASES:
+	
+	:active: Utilizado para alterar el aspecto de los links después de que han sido pulsados.
+
+	:visited: Utilizado para alterar el aspecto de los links después de que se visiten. Tienen el mismo estilo que :active.
+	
+
+	
