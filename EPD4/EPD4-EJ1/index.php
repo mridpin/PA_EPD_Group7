@@ -11,6 +11,6 @@
                 <input type="submit" value="Send" />
             </p>
         </form>    
-        <textarea name="mediciones" form="form" rows="4" cols="50"></textarea>
+        <textarea name="mediciones" form="form" rows="4" cols="55"></textarea>
     </body>
 </html>
