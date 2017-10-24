@@ -11,55 +11,90 @@
         <?php
         
         
-            function isDate($date){
+            function isDate($day,$month,$year,$monthDays){
                     $result=FALSE;
-                    list($year,$month,$day)= explode("-", $date);
-                    if(checkdate($month,$day,$year)){
+                    if($day>0 && $month>0 && $year>0 && $day<=$monthDays[$month-1] && $month<=12){
                         $result=TRUE;
                     }
+                    
                     return $result;
             }
-        
-            function addDays($date,$daystoadd){
-                if(isDate($date)==FALSE){ //We check to see if the date is valid
-                    $finaldate=FALSE;
-                }
-                else
+            
+            function isLeap($year)
+            {
+                $result=FALSE;
+                
+                if((($year % 4) == 0) && ((($year % 100) != 0) || (($year % 400) == 0)))
                 {
-                    $finaldate = new DateTime($date);
-                    $stringdaystoadd='P'.$daystoadd.'D';
-                    $finaldate->add(new DateInterval($stringdaystoadd));
+                    $result=TRUE;
                 }
-                return $finaldate;
+                return $result;
             }
-            
-            
-            
+        
+            function addDays($rawdate,$daystoadd,$monthDays)
+                    {
+                $date= explode("-", $rawdate);
+                $year = (int) $date[0];
+                $month = (int) $date[1];
+                $day = (int) $date[2];
+                $result=FALSE;
+                
+                if(isDate($day, $month, $year, $monthDays)==TRUE)
+                {
+                   $result="";
+                   
+                   if(isLeap($year)==TRUE)
+                   {
+                       $monthDays[1]=29;
+                   }
+                   
+                  for($i=0;$i<$daystoadd;$i++)
+                  {
+                        $day++;
+                        if($day>$monthDays[$month-1])
+                        {
+                                $day=1;
+                                $month++;
+                                if($month==13)
+                                {
+                                    $month=1;
+                                    $year++;
+                                }
+                        }
+                    }
+                    $result="$year-$month-$day";
+                }
+                
+                return $result;
+                
+            }
             
             
                 echo '<h1> Fechas </h1>';
-                $date1="1997-09-10";
-                $date2="2016-02-28";
-                $date3="2005-09-30";
+                $date1="1997-9-10";
+                $date2="2016-2-28";
+                $date3="2005-9-30";
                 $date4="2011-11-11";
                 $date5="2018-11-45";
+                
                 $daystoadd=2;
+                $monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 
                 $dates= array($date1,$date2,$date3,$date4,$date5);
                 
                 foreach($dates as $i){
                 echo "Fecha antes del cambio: ".$i." ";
-                 $finaldate= addDays($i, $daystoadd);
+                 $finaldate= addDays($i, $daystoadd,$monthDays);
                  if($finaldate==FALSE)
                  {
                      echo "ERROR: FECHA INCORRECTA";
                  }
                  else
                  {
-                    echo "Fecha despu&eacutes del cambio: ".$finaldate->format('Y-m-d');
+                    echo "Fecha despu&eacutes del cambio: ".$finaldate;
                  }
                  echo "<br>";
-                }
+                } 
                 
                 
         ?>
