@@ -5,11 +5,18 @@
 <html>
     <body>
         <?php
-
+        function printVector($vec) {
+            echo "<table>";
+            echo "<tr>\n";
+            foreach ($vec as $data) {
+                echo "<td>" . sprintf("%02s", $data) . "</td>";
+            }
+            echo "</tr>";
+            echo "</table>";
+        }
         function sumatorioN($n){
             $vec=[];
             if ($n%2==0) {
-
               $sum=0;
               $k=0;
               $v=[];
@@ -22,7 +29,6 @@
               $vec[1]=$sum;
               $vec[2]=$v;
             }
-
             return $vec;
         }
       
@@ -30,7 +36,7 @@
         echo "Sumatorio de $sol[0]. ''<br>''";
         echo "Suma = $sol[1] ''<br>''";
         echo "Sumandos: ";
-        print_r($sol[2]); 
+        printVector($sol[2]); 
         ?>
     </body>
 </html>

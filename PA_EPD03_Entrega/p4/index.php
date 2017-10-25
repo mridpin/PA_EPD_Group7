@@ -6,7 +6,7 @@
 function table($matrix) {
     echo "<table>\n"; /* "" imprime literal lo que haya en las comillas. '' interpreta lo que hay como string */
     echo "<table border='1'>\n";
-    /* Create cool table header */
+    /* Create table header */
     echo "<tr>\n";
     echo "<th colspan=\"2\">Rest</th>\n";
     echo "<th colspan=\"2\">Walking</th>\n";
@@ -44,8 +44,8 @@ function table($matrix) {
     }
 
     /* Last row with sum */
-    $sum = "\u{2211}";
-    echo "<tr class=\"sumrow\" bgcolor=\"#c0c0c0\">"; /* Correct usage is to change the color with .class instead */
+    $sum = "\u{2211}"; //Unicode for sum sign
+    echo "<tr class=\"sumrow\" bgcolor=\"#c0c0c0\">"; /* Correct usage is to change the color with CSS instead */
     echo "<td>" .  $totalRest . "</td>";
     echo "<td>" . $sum . "</td>"; /* Empty cols to skip percent sum */
     echo "<td>" . $totalWalk . "</td>";
