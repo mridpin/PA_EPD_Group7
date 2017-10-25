@@ -147,10 +147,17 @@
             }
             return array($minDate,$minPrice,"MINIMO"); 
         }
-
-        $raw_data = explode("\n",$_POST['mediciones']);
-        //print_r(array_values($raw_data));
-        processData($raw_data);
+        
+        if($_POST['mediciones']="")
+        {
+            $raw_data = explode("\n",$_POST['mediciones']);
+            //print_r(array_values($raw_data));
+            processData($raw_data);
+        }
+        else
+        {
+            echo "ERROR: No se puede dejar el campo vacio";
+        }
         ?>
     </body>
 </html>
