@@ -21,7 +21,7 @@ and open the template in the editor.
             Indique el porcentaje de descuento que se le har&aacute;n a los precios:
             <input type="number" name="discount" value="0" min="0" max="100"/>
             <br>
-            <input type="submit" value="Enviar" />
+            <input type="submit" name = "envio" value="Enviar" />
         </form>
     </body>
 </html>

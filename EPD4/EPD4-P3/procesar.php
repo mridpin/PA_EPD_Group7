@@ -8,56 +8,23 @@
         <?php
         
         
-        function processData($line){
-            $maxMin;
-            $companyName="";
+        function processData($dates,$prices){
             $result;
-            for($j=0;$j<sizeof($line);$j++)
-            {
-                $raw_data=explode(";",$line[$j]); //Dividimos la linea en las mediciones, el nombre de la gasolinera y si queremos calcular el maximo o minimo
-
-                //print_r(array_values($raw_data));
-
+           
+                //Filtramos las mediciones que no nos sirvan y lo metemos en una estructura
+                $result=filter($prices,$dates);
                 
-                for($i=0; $i<sizeof($raw_data);$i++){
-                    if($i==0){
-                        //Preparamos las fechas y los precios para trabajar con ellos
-                        $aux2 = explode(" ", $raw_data[$i]);
-
-                        //print_r(array_values($aux2));
-
-                        $dates=processDates($aux2);
-
-                        //print_r(array_values($dates));
-
-                        $prices=processPrices($aux2);
-
-                        //print_r(array_values($prices));
-                    }
-                    elseif($i==1){
-                        //Este es el titulo de la gasolinera
-                        $companyName=$raw_data[$i];
-                    }
-                    else{
-                        //echo "$raw_data[$i]";
-                        if(trim($raw_data[$i])=="MAXIMO")
-                        {
-                            //echo "Voy a calcular el maximo";
-                            $maxMin=calculateSingleMaxPrice($dates,$prices);
-                        }
-                        else{
-                            //echo "Voy a calcular el minimo";
-                            $maxMin=calculateSIngleMinPrice($dates,$prices);
-                        }
-                    }
-                    }
-                    //print_r(array_values($maxMin));
-                    $result[$j][0]=$maxMin;                
-                }
+                //print_r($result);
                 
-                //Despues de procesar los datos del area de texto
+                //Aplicamos los descuentos
                 
-                if($_POST['sort']=="date")
+                if($_POST['discount']!="0")
+                array_walk($result,'applyDiscount');
+            
+                
+                //Despues de procesar los datos
+                
+                if($_POST['sort']=="Fecha")
                 {
                     usort($result,"sortDates");
                 }
@@ -68,37 +35,59 @@
               
                 //print_r($result);
                  
-            printTable($result);;
+            printTable($result);
                  
+        }
+        
+        function filter($prices,$dates)
+        {
+            $result;
+            $count=0;
+            $result[$count][0]="00/00/0000";
+            $result[$count][1]="0";
+            for($i=0;$i<sizeof($prices);$i++)
+            {
+                $aux=explode("/",$dates[$i]);
+                if($aux[1]==intval($_POST['month']))
+                {
+                    $result[$count][0]=$dates[$i];
+                    $result[$count][1]=$prices[$i];
+                    $count++;
+                }
+            }
+            return $result;
+        }
+        
+        function applyDiscount(&$data)
+        {
+            $data[1] = ($data[1] * (100-intval($_POST['discount'])))/100;  
         }
         
         function sortDates($date1,$date2)
         {
-           /* print_r($date1[0][0]);
-            print_r($date2[0][0]);*/
-            return strtotime($date1[0][0]) - strtotime($date2[0][0]);
+            return strtotime($date1[0]) - strtotime($date2[0]);
         }
         
         function sortPrices($price1,$price2)
         {
-           /* print_r($price1[0][1]);
-            print_r($price2[0][1]);*/
-            return doubleval($price1[0][1]) - doubleval($price2[0][1]);
+            return doubleval($price1[1]) - doubleval($price2[1]);
         }
         
         
         function printTable($data)
         {
+            $discount=$_POST['discount'];
+            $month=$_POST['month'];
             echo "<table border=1>";
             echo "<tr>";
-            echo "<th>Fecha</th>";
-            echo "<th>Precio Con Descuento</th>";
+            echo "<th>Fechas del mes $month</th>";
+            echo "<th>Precios Con Descuento($discount %)</th>";
             echo "</tr>";
             
             
             for($j=0;$j<sizeof($data);$j++)
             {
-                $maxMin = $data[$j][0];
+                $maxMin = $data[$j];
                 
                 echo "<tr>";
                 for($i=0;$i<sizeof($maxMin);$i++)
@@ -111,68 +100,9 @@
             echo "</table> <br>";
         }
         
-        function processDates($line){
-            $result=[];
-            $i=0;
-            for($i=0;$i<sizeof($line);$i++)
-            {
-                $aux=explode("-",$line[$i]);
-                array_push($result, $aux[0]);
-            }
-            
-            return $result;
-        }
-        
-        function processPrices($line){
-            $result=[];
-            $i=0;
-            for($i=0;$i<sizeof($line);$i++)
-            {
-                $aux=explode("-",$line[$i]);
-                array_push($result, $aux[1]);
-            }
-            
-            return $result;
-        }
-        
-        function calculateSingleMaxPrice($dates,$prices){
-            $maxDate= $dates[0];
-            $maxPrice=$prices[0];
-            $i=0;
-            foreach($prices as $aux)
-            {
-                if($aux > $maxPrice)
-                {
-                    $maxPrice=$aux;
-                    $maxDate=$dates[$i];
-                }
-                $i++;
-            }
-            return array($maxDate,$maxPrice,"MAXIMO");
-        }
-        
-        function calculateSIngleMinPrice($dates,$prices)
-        {
-            $minDate= $dates[0];
-            $minPrice=$prices[0];
-            $i=0;
-            foreach($prices as $aux)
-            {
-                if($aux < $minPrice)
-                {
-                    $minPrice=$aux;
-                    $minDate=$dates[$i];
-                }
-                $i++;
-            }
-            return array($minDate,$minPrice,"MINIMO"); 
-        }
-        
         if(count($_POST['dates']) == count($_POST['prices']) && count($_POST['dates']) == $_POST['number_inputs'])
         {
-            $raw_data = explode("\n",$_POST['mediciones']);
-            //print_r(array_values($raw_data));
-            processData($raw_data);
+            processData($_POST['dates'],$_POST['prices']);
         }
         else
         {
