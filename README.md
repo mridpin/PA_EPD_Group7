@@ -1,2 +1,6 @@
 # UPO_PA_EPD_Group7
+<<<<<<< HEAD
 BUSH DID 9/11
+=======
+THE HUMAN EYE CANT SEE MORE THAN 30 FPS
+>>>>>>> 6be8c5061ba4fc14f358f9e692fb34da38e0128c
