@@ -12,7 +12,7 @@ function provideAirlineNameAndNumberOfDestinations($nameError, $destError) {
     printErrorMessage($nameError);
     printErrorMessage($destError);
 
-    echo "<form method='get' action='.'>";
+    echo "<form method='get' action='newAirline.php'>";
     echo "Airline name: <input type='text' name='airlineName' /> <br />";
     echo "Number of destinations: <input type='text' name='numberOfDestinations' /> <br />";
     echo "<input type='submit' name='airlineSubmitted' />";
@@ -30,7 +30,7 @@ function provideAirlineDestinations() {
     fclose($f);
 
     /* Step 2: print a list of selectables with the destinations in the list */
-    echo "<form method='get' action '.' id='destForm'>";
+    echo "<form method='get' action 'newAirline.php' id='destForm'>";
     echo "Airline: " . $_GET["airlineName"] . ": <br /> Please provide a city for each destination with the dropdown menus: <br />";
     for ($i = 0; $i < $_GET["numberOfDestinations"]; $i++) {
         $name = "destination[" . $i . "]";
@@ -48,6 +48,7 @@ function provideAirlineDestinations() {
 }
 
 function writeAirlineToDataFiles() {
+    /* TODO: Turn file to list into a function. careful with associative arrays*/
     $fileError = false;
     /* Step 1: file with airlines and codes */
     $fairlines = fopen('files/airlines.txt', 'a+');
@@ -117,7 +118,7 @@ function printErrorMessage($msg) {
         $fileError = FALSE;
         if (isset($_GET["airlineCityDestinationsSubmitted"]) || $fileError) {
             $fileError = writeAirlineToDataFiles();
-            //header("Location: index.php");
+            header("Location: index.php");
             exit;
         } else if (isset($_GET["airlineSubmitted"])) {
             if (!preg_match('/^[[:alnum:]]+$/', $_GET["airlineName"])) {

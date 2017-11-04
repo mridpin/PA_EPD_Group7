@@ -1,8 +1,27 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<html>
+    <head>
+        <title>PA EPD05 P1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1>
+                PA EPD05 P1: AIRLINE INFORMATION SYSTEM                    
+            </h1>            
+        </header>
+        <article>
+            <ul>
+                <li>
+                    <a href="newAirline.php">Create new airline</a>
+                </li>
+                <li>
+                    <a href="newFlight.php">Add a new flight</a>
+                </li>
+                <li>
+                    <a href="listFlights.php">List flight information</a>
+                </li>
+            </ul>    
+        </article>
+    </body>
+</html>
