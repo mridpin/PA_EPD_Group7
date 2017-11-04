@@ -11,7 +11,6 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $GLOBALS['serverFile']='server_images.txt';
         
         function getDateFormat() //Formato correcto para los archivos
         {
@@ -44,13 +43,35 @@ and open the template in the editor.
             /*$f= fopen("server_images.txt",'a');//Escribimos en el fichero y lo preparamos para la siguiente linea
             fwrite($f,$tags. "\t\t" . $filename . "\n"); // Si no existe el fichero lo crea,
             fclose($f);*/
-            file_put_contents($serverFile,$tags. "\t\t" . $filename . "\r\n", FILE_APPEND | LOCK_EX);
+            file_put_contents($GLOBALS['serverFile'],$tags. "\t" . $filename . "\r\n", FILE_APPEND | LOCK_EX);
             
         }
         
         function readFromFile()
         {
-            $data; //Matriz de 2 dimensiones donde el primero son los tags y el segundo el nombre de la foto
+            $data; //Matriz de 2 dimensiones donde el primero son los tags con la fecha de obtencion  y el segundo el nombre de la foto
+            $i=0;
+            if(file_exists($GLOBALS['serverFile']))
+            {
+                $f = fopen($GLOBALS['serverFile'],'r');             
+                    flock($f,LOCK_SH); //Bloqueamos la escritura del fichero
+                    while(($line = fgets($f)) !== false)
+                    {
+                        $line = rtrim($line, "\r\n");
+                        $rawData = explode("\t", $line); //La primera posicion tendra los tags y la segunda el nombre de la foto
+                        $data[$i][0] = $rawData[0];
+                        $data[$i][1] = $rawData[1];
+                        $i++;
+                    }
+                    flock($f,LOCK_UN);
+                    fclose($f);              
+            }
+            else
+            {
+                $data="No hay imagenes cargadas";
+            }
+            
+            return $data;
         }
 
         function processData($line) {
@@ -64,10 +85,32 @@ and open the template in the editor.
             }
         }
 
-        function createTable() {
+        function createTable($data) {
+            if(is_array($data)==TRUE)
+            {
+                $result="<h1 align='center'> Tus imagenes</h1>"
+                        . "<br>"
+                        . "<table align='center'>";
+                for($i=0;$i<sizeof($data);$i++)
+                {
+                    $result.="<tr>"
+                                ."<td>"
+                                    ."<figure>"
+                                        ."<img src=".$data[$i][1]." width=200>"
+                                        ."<figcaption>".trim($data[$i][1],".jpg")." - ".$data[$i][0]." </figcaption>"
+                                    ."</figure>"
+                                . "</td>"
+                            . "</tr>";
+                }
+                $result.="</table>";
+            }
+            else
+                $result="<strong>Todavia no tienes ninguna imagen</strong>";
+            
+            return $result;
             
         }
-
+        $serverFile='server_images.txt';
         // Parte superior de la pagina
         // Tenemos que comprobar si venimos de un formulario
         if (isset($_POST["checkboxes"]) || isset($_POST["file"])) { //Hemos venido de un formulario
@@ -85,7 +128,10 @@ and open the template in the editor.
                 else
                     echo "ERROR: No se pueden superar los 200 caracteres por archivo";
             }
+            else
+                echo "ERROR: El archivo debe ser un fichero de texto";
         }
+        echo createTable(readFromFile()); //Intentamos imprimir la tabla
         ?>
         <!Parte inferior de la pagina>
     <h3>Seleccione o suba un fichero, con las categorias de la foto que desea ver:</h3>
