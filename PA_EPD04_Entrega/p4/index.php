@@ -1,4 +1,29 @@
 <?php
+/* Functions content structure:
+ *      - provideMatrixSize: First of the three main functions: does form control and 
+ *          presents the form for the matrix size if the value doesn't exist or if it has errors
+ *      - provideOperationData: Second of the three main functions: prints the errors in the data input
+ *          if they exist, and presents the form
+ *      - processMatrixForm: Third main function. Presents the matrix form to the user, 
+ *          collects the data and highlights incorrect values in red.
+ *      - performOperations: performs the operations with matrix and scalar
+ *      - isNumericValidInput: Checks if the parameter is valid and returns an
+ *          error message if it isn't. The error message is used to check if the form needs to be shown again and to 
+ *          pinpoint exactly what the error is.
+ *      - isMatrixEmpty: returns true if a matrix is 100% empty. a matrix is empty if for all its values: isset(value)==FALSE
+ *      - printInputErrors: Prints the error message from isNumericValidInput, if it exists.
+ *      - matrixoperation1: Performs the first matrix operation from EPD03_P5
+ *      - isValidMatrix: Performs the condition check from EPD03_P5
+ *      - matrixoperation2: Performs the second matrix operation from EPD03_P5
+ *      - printResults: Prints the results as HTML
+ *      - printMatrix: Prints a matrix using HTML tables
+ *      - printVector: Prints a vector as an HTML table with one row
+ * 
+ *  Program structure:
+ *      The program is divided in three if else blocks. Starting from the bottom, each if-else requieres the previous to be correct
+ *      That is, to prompt for data input, we require a valid matrix size, and to perform the operations, we require a valid matrix and scalar
+ *      The parameter checks are done from most selective to least selective, in order to repeat the conditions that are needed for the next operation
+ */ 
 
 function provideMatrixSize() {
     /* We check for errors again to pinpoint what the error is */
@@ -51,7 +76,7 @@ function processMatrixForm() {
         for ($j = 0; $j < $_GET["matrixSize"]; $j++) {
             echo "<td>";
             /*
-             * To access this variable name, use $_GET["matrix"][$i][$j], and NOT $_GET["matrix[$i][$j]"]. 
+             * To access this variable, use $_GET["matrix"][$i][$j], and NOT $_GET["matrix[$i][$j]"]. 
              * PHP automatically creates the "matrix" key entrance in $_GET[] as a 2d array with key "matrix" and two dimensions thanks to the [][]brackets
              * Check https://stackoverflow.com/questions/10911084/php-set-dynamic-array-index for more info
              */
@@ -92,6 +117,7 @@ function isNumericValidInput($inputValue, $inputName) {
      *  1. input isnt set
      *  2. input is an empty string
      *  3. input isnt a number         
+     * Returns an error message with the input value and name for easier error solving and input control
      */
     if (!isset($inputValue) || !is_numeric($inputValue)) {
         $error = 'Input error in ' . $inputName . ' field:' . '"' . $inputValue . '" is not a valid value.';
@@ -115,6 +141,7 @@ function isMatrixEmpty($matrix) {
 }
 
 function printInputError($error) {
+    /* Prints $error in red, if it exists */
     if (isset($error)) {
         echo "<p style='color:red'>" . $error . "</p>";
     }
@@ -214,7 +241,7 @@ function printVector($vec) {
         </h1>
         <?php
         // First, check for errors in matrix input. 
-        // This will save a error message for each incorrect cell, so it can be printed later
+        // This will save a matrix of error messages, one for each incorrect cell, so it can be printed later
         $scalarError = null;
         $matrixErrors = null;
         if (isset($_GET["matrixSubmitted"])) {
