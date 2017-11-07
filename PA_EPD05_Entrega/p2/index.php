@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Grupo 7
 -->
 <html>
     <head>
@@ -15,7 +13,7 @@ and open the template in the editor.
         function getDateFormat() //Formato correcto para los archivos
         {
             $now = new DateTime();
-         return $now->format('Y-m-d_H-i');
+         return $now->format('Y-m-d_H-i-s');
         }
 
         function getImage($raw_tags, $filename) {
