@@ -1,1 +1,1 @@
-Se ha cambiado la marca temporal de las fotos para que además se incluya los segundos, ya que puede ocurrir que se pidan dos fotos en el mismo minuto mediante checkboxes.
+Se ha cambiado la marca temporal de las fotos para que además se incluya los segundos, ya que puede ocurrir que se pidan varias fotos en el mismo minuto mediante checkboxes.
