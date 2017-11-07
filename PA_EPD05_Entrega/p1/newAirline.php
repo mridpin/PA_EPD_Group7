@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php
+include 'functions.php';
+require_once 'functions.php';
+
 /* Functions:
  *  provideAirlineNameAndNumberOfDestinations($nameError, $destError): Checks if the supplied values have errors. Then prints the form
  *  provideAirlineDestinations(): Reads the available cities from a file, then presents a form to select as many destinations
@@ -19,9 +22,9 @@ function provideAirlineNameAndNumberOfDestinations($nameError, $destError) {
     echo "</form>";
 }
 
-function provideAirlineDestinations() {
+function provideAirlineDestinations($fileName) {
     /* Step 1: read possible destinations from file */
-    $f = fopen('files/cities.txt', 'r');
+    $f = fopen($fileName, 'r');
     if ($f) {
         flock($f, LOCK_SH);
         $availableCitiesList = fgetcsv($f, 999, ',');
@@ -44,14 +47,12 @@ function provideAirlineDestinations() {
     echo "<input type='hidden' name='airlineName' value=\"" . $_GET["airlineName"] . "\" /> <br />";
     echo "<input type='hidden' name='numberOfDestinations' value=\"" . $_GET["numberOfDestinations"] . "\"/> <br />";
     echo "</form>";
-    /* TODO: Check that cities arent repeated */
 }
 
-function writeAirlineToDataFiles() {
-    /* TODO: Turn file to list into a function. careful with associative arrays*/
+function writeAirlineToDataFiles($fileName) {
     $fileError = false;
     /* Step 1: file with airlines and codes */
-    $fairlines = fopen('files/airlines.txt', 'a+');
+    $fairlines = fopen($fileName, 'a+');
     $airlineNames = [];
     $newAirlineCode = "";
     if ($fairlines) {
@@ -99,14 +100,7 @@ function writeAirlineToDataFiles() {
         return $fileError;
     }
 }
-
-function printErrorMessage($msg) {
-    if (isset($msg) && $msg != "") {
-        echo "<p style='color:red'>" . $msg . "</p>";
-    }
-}
 ?>
-
 
 <html>
     <head>
@@ -117,12 +111,12 @@ function printErrorMessage($msg) {
         <?php
         $fileError = FALSE;
         if (isset($_GET["airlineCityDestinationsSubmitted"]) || $fileError) {
-            $fileError = writeAirlineToDataFiles();
+            $fileError = writeAirlineToDataFiles("files/airlines.txt");
             header("Location: index.php");
             exit;
         } else if (isset($_GET["airlineSubmitted"])) {
             if (!preg_match('/^[[:alnum:]]+$/', $_GET["airlineName"])) {
-                $nameError = "ERROR: Ariline name must be alphanumeric";
+                $nameError = "ERROR: Airline name must be alphanumeric";
             }
             if (!is_numeric($_GET["numberOfDestinations"])) {
                 $destError = "ERROR: Number of destinations must be a number";
@@ -131,7 +125,7 @@ function printErrorMessage($msg) {
             }
         }
         if (isset($_GET["airlineSubmitted"]) && !isset($nameError) && !isset($destError)) {
-            provideAirlineDestinations();
+            provideAirlineDestinations("files/cities.txt");
         } else {
             provideAirlineNameAndNumberOfDestinations(isset($nameError) ? $nameError : "", isset($destError) ? $destError : "");
         }
