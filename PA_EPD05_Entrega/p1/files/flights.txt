@@ -4,3 +4,4 @@
 000000,London,Barcelona,03:00
 000005,Seville,London,03:00
 000000,London,Rome,12:12
+000006,Seville,Barcelona,01:30

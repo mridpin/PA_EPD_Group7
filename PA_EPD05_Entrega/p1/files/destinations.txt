@@ -19,3 +19,10 @@
 000004;Rome
 000005;Seville
 000005;London
+000006;Seville
+000006;Amsterdam
+000006;Barcelona
+000006;Madrid
+000007;Paris
+000007;Barcelona
+000007;Dublin
