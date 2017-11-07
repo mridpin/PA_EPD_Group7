@@ -1,0 +1,301 @@
+/*
+
+    Grupo 7
+
+*/
+
+/*
+
+Para todas las paginas
+
+*/
+body{
+    background-color: lightblue;
+    font-family: sans-serif;
+}
+
+h1{
+    text-align: center;
+    margin-left: 10%;
+    position:relative;
+    left:-20%;
+}
+
+.block{ 
+    border-style: solid;
+    border-color: #6633ff;
+    border-radius: 12px;
+    width:60%;  /*Utilizados para centrar el bloque principal
+                */
+    margin: auto;
+    
+    padding-bottom: 3%;
+    padding-left: 20%;  
+    margin-top:3%;
+    
+    background-color: rgb(79,188,255);
+    box-shadow: 10px 10px 5px #888888;
+}
+
+nav{
+    background-color: white;
+    border-style: ridge;
+    border-radius: 12px;
+    border-width: 5px;
+    border-color: lawngreen;
+    width: 127.2%;
+    position:relative;
+    left:-33.3%;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    
+}
+
+
+footer{
+    margin-top:5%;
+    margin-left: 10%;
+}
+
+video{
+    margin-left: 40%;
+    margin-top: 3%;
+    width: 20%;
+}
+
+.logo{
+    position:absolute;
+    left:45%;
+    top: -22%;
+}
+
+
+.logo2{
+    padding-right: 3%;
+}
+
+.logo2 img{
+    float:right;
+    max-width: 40%;
+    height: auto;
+}
+
+/*
+    Para la pagina Available Venues and Sessions
+*/
+
+table {
+    border-collapse: collapse;
+    margin-top: 5%;
+    position:relative;
+    right:15%;
+    
+}
+
+th, td {
+    text-align: left;
+    padding: 1%;
+    border: 1.5px solid black;
+    background-color: white;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/*
+    Para la pagina Available Books
+*/
+
+a img{
+    max-width: 40%;
+    height: auto;
+}
+
+
+.notice{
+    margin-left: 10%;
+    color:purple;
+}
+
+figcaption{
+    margin-top:3%;
+}
+
+ul{
+    position:relative;
+    right:19%;
+    list-style-type: none;
+    text-align: center
+}
+
+article{
+    position:relative;
+    right:3%;
+    text-align: center
+}
+
+/*
+
+    Para la pagina About Us
+
+*/
+
+#about{
+    position:relative;
+    right:18%;
+    text-align: center
+}
+
+textarea{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    box-shadow: 5px 5px 5px #888888;
+    border-radius: 4px;
+}
+
+/*
+
+    Para la pagina Registration Form
+
+*/
+
+
+.formbox{
+    position:relative;
+    padding-top:2%;
+    right:18%;
+    background-color: aquamarine;
+    border-style: ridge;
+    border-radius: 12px;
+    border-width: 5px;
+    left:-33.3%;
+    width: 132%;
+    border-color: yellow;
+}
+
+
+
+input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    color: white;
+    padding: 2% 5%;
+    text-decoration: none;   
+    margin-top: 5%;
+    margin-bottom: 3%;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+
+.buttons{
+    margin-left:37%;
+}
+
+.popup p{
+    display:none;
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 3px;
+    max-width: 40%;
+    padding-left: 1%;
+    margin-left: 13%;
+    border-width: 2px;
+    background-color: #4CAF50;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+
+select {
+    width: 100%;
+    padding: 1.5% 2%;
+    margin: 0.6% 0;
+    border-radius: 4px;
+    box-shadow: 1px 5px 5px #888888;
+}
+
+input[type=checkbox]{
+    margin-right:15%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+}
+
+input[type=radio]{
+    margin-left: 25%;
+}
+
+input[type=text],input[type=email],input[type=number],input[type=tel]{
+    width: 100%;
+    padding: 1.3% 5%;
+    margin: 1% 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 1px 5px 5px #888888;
+}
+
+label{
+    margin-top:9%;
+}
+
+
+/*
+Pseudo-clases
+*/
+
+
+a:visited{
+    color:green;
+}
+
+a:active{
+    background: yellow;
+}
+
+a:link{
+    color:blue;
+    text-decoration: none;
+}
+
+a:hover{
+    color:hotpink;
+    text-decoration: underline;
+}
+
+input:focus {
+    background-color: lightblue;
+}
+
+input[type=submit]:hover, input[type=reset]:hover{
+    background-color:cornflowerblue;
+}
+
+input[type=text]:required,input[type=number]:required,input[type=tel]:required,select:required
+{
+    border-style: solid;
+    border-color: red;
+    border-width: 2px;
+}
+
+input[type=text]:optional,select:optional,input[type=email]:optional{
+    border-color: blue;
+}
+
+.popup:hover p{
+    display:block;
+}
+
+
+h1:hover,h2:hover{
+    text-decoration: underline;
+    text-shadow: 3px 2px #FDD58A;
+    color: blue;
+}
