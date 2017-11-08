@@ -38,9 +38,7 @@ Grupo 7
         
         function writeToFile($tags,$filename) //Escribimos en un fichero las categorias de la foto y el nombre del archivo
         {
-            /*$f= fopen("server_images.txt",'a');//Escribimos en el fichero y lo preparamos para la siguiente linea
-            fwrite($f,$tags. "\t\t" . $filename . "\n"); // Si no existe el fichero lo crea,
-            fclose($f);*/
+            //Esta funcion hace que abramos el fichero (si no existe lo crea), escribamos en el fichero con un lock y finalmente cierre el fichero
             file_put_contents($GLOBALS['serverFile'],$tags. "\t" . $filename . "\r\n", FILE_APPEND | LOCK_EX);
             
         }
