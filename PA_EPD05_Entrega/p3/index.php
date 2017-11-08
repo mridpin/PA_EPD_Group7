@@ -5,9 +5,7 @@
         <title>Problema 3</title>
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
     </head>
-    <body>
-        
-
+    <body>  
         <h1>Administrador de documentos</h1>
         <?php
 
@@ -21,9 +19,9 @@
                     flock($f, LOCK_SH);
                     $usuario = fgetcsv($f, 999, ";");
 
-                    $flag = 0; //va a tomar 3 valores posibles, 0 si el usuario no existe, 1 si existe pero la contraseÃ±a no coincide y 2 si se acepta el log in
+                    $flag = 0; //va a tomar 3 valores posibles, 0 si el usuario no existe, 1 si existe pero la contraseña no coincide y 2 si se acepta el log in
                     while (!feof($f) && $flag == 0) {
-
+                        
                         if (strcmp($user, $usuario[0]) == 0) {
 
                             if ($pass == $usuario[1]) {
@@ -45,7 +43,7 @@
 
         function crearUsuario($user, $pass) {
             if (isset($erroresRegistro)) {
-                echo '<p style="color:red">Errores cometidos:</p>';
+                echo '<p style="color:red;">Errores cometidos:</p>';
                 echo '<ul style="color:red">';
                 foreach ($errores as $e)
                     echo "<li>$e</li>";
@@ -106,7 +104,7 @@
             }
 
             echo '</table>';
-        } elseif (isset($_POST['busqueda'])) {
+        } elseif (isset($_POST['busqueda']) && isset ($_POST['clave']) && $_POST['clave']!="") {
             $archivosEncontrados = Array();
             $usuarios = Array();
             $universidades = Array();
@@ -135,7 +133,6 @@
             echo '</table>';
         } elseif (isset($_POST['envio'])) {
             $x = comprobarUsuario($_POST['name'], $_POST['pass']);
-            //echo $x;
             if ($x == 0) {
                 crearUsuario($_POST['name'], $_POST['pass']);
             } elseif ($x == 1) {
@@ -149,7 +146,7 @@
                 $errorFile[] = "Error - " . $_FILES["archivo"]["error"];
             }
             if (!soloPDF($_FILES['archivo'])) {
-                $errorsFile[] = "Formato " . $_FILES["archivo"]["type"] . " no soportado.";
+                $errorsFile[] = "Formato de fichero no soportado.";
             } elseif (!limiteTamanyo($_FILES['archivo'], 1024 * 1024 * 5)) {
                 $errorsFile[] = "El tama&ntilde;o del fichero supera los 5MB.";
             }
@@ -194,7 +191,7 @@
                         move_uploaded_file($_FILES['archivo']['tmp_name'], $path);
                     }
                 } else {
-                    $errorsFile[] = "Este archivo ya estÃ¡ subido.";
+                    $errorsFile[] = "Este archivo ya est&aacute; subido.";
                 }
             }
             if (isset($errorsFile)) {
@@ -209,7 +206,7 @@
             imprimirFormularioArchivo();
         } elseif (isset($_POST['envioRegistro'])) {
             if (comprobarUsuario($_POST['name'], $_POST['pass']) > 0) {
-                $erroresRegistro[] = 'El nombre de usuario ya esta ocupado, eliga otro nombre de usuario.';
+                $erroresRegistro[] = 'El nombre de usuario ya est&aacute; ocupado, elija otro nombre de usuario.';
                 crearUsuario($_POST['name'], $_POST['pass']);
             } else {
                 echo '<h2>Usuario creado</h2>';
@@ -219,13 +216,13 @@
                 echo 'Universidad: ' . $_POST['provincia'] . '<br/>';
                 $f = fopen("usuarios.txt", "a");
                 if ($f) {
-                    //flock($f, LOCK_SH);
+                    flock($f, LOCK_EX);
                     echo $_POST['name'] . ";" . $_POST['pass'] . ";" . $_POST['e-mail'] . ";" . $_POST['provincia'] . "\n";
                     fwrite($f, $_POST['name'] . ";" . $_POST['pass'] . ";" . $_POST['e-mail'] . ";" . $_POST['provincia'] . "\n");
-                    //flock($f, LOCK_UN);
+                    flock($f, LOCK_UN);
                     fclose($f);
                 }
-                header( "refresh:2;url=index.php" );
+                header("refresh:2;url=index.php");
             }
         } elseif (!isset($_POST['envio']) || isset($errores)) {
             ?>
@@ -239,7 +236,7 @@
             <?php
         }
         ?>
-            
+
     </body>
 </html>
 
@@ -282,13 +279,12 @@ function articuloExistente($hash_input) {
 }
 
 function imprimirFormularioArchivo() {
-    $old_error_reporting = error_reporting(0);
-    echo "<h2 id='user'>Usuario:" .$_POST['name'] ."</h2> ";
+    echo "<h2 id='user'>Usuario:" . $_POST['name'] . "</h2> ";
     echo "<br><h3>Subir nuevo documento</h3>";
     echo '
     <form method="post" enctype="multipart/form-data">
         <span>T&iacute;tulo del documento: </span>
-        <input type="text" name="titulo" value="' . $_POST['titulo'] . '"/><br>
+        <input type="text" name="titulo" value="' . (isset($_POST['titulo']) ? $_POST['titulo'] : '') . '"/><br>
         <span>Documento a introducir(Max: 5Mb, .pdf)</span><br>
         <input type="file" name="archivo"><br>
         <span>Descripci&oacute;n del art&iacute;culo: </span><br>
@@ -312,17 +308,16 @@ function imprimirFormularioArchivo() {
                     <option value="Universidad de Huelva">Universidad de Huelva</option>
                     <option value="Universidad de Cordoba">Universidad de Cordoba</option>
                     <option value="Universidad de Malaga">Universidad de M&aacute;laga</option>
-                    <option value="Universidad de JaÃ©n">Universidad de Ja&eacute;n</option>
+                    <option value="Universidad de Jaen">Universidad de Ja&eacute;n</option>
                     <option value="Universidad de Granada">Universidad de Granada</option>
-                    <option value="Universidad de AlmerÃ­a">Universidad de Almer&iacute;a</option>
-                    <option value="Universidad de CÃ¡diz">Universidad de C&aacute;diz</option>
-                    <option value="Universidad Internacional de AndalucÃ­a">Universidad de Andaluc&iacute;a</option>
+                    <option value="Universidad de Almeria">Universidad de Almer&iacute;a</option>
+                    <option value="Universidad de Cadiz">Universidad de C&aacute;diz</option>
+                    <option value="Universidad Internacional de Andalucia">Universidad de Andaluc&iacute;a</option>
 
                 </select><br>
                 <input type="submit" name="busquedaUni" value="Buscar">
          </form>';
 
-    error_reporting($old_error_reporting);
     if (file_exists("documentos.txt")) {
         $f = fopen("documentos.txt", "r");
         if ($f) {

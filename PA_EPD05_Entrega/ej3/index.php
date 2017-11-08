@@ -98,13 +98,12 @@ function correctMobileFormat($mobile) {
     <body>
         <h1> Rutas de senderismo por Andaluc&iacute;a </h1>
         <?php
-
         if (isset($_POST['envio'])) {
-                    $name = filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING);
-        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-        $user = filter_input(INPUT_POST, "twitter", FILTER_SANITIZE_STRING);
-        $phone = filter_input(INPUT_POST, "tlf-fijo", FILTER_SANITIZE_NUMBER_INT);
-        $mobile = filter_input(INPUT_POST, "tlf-movil", FILTER_SANITIZE_NUMBER_INT);
+            $name = filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING);
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+            $user = filter_input(INPUT_POST, "twitter", FILTER_SANITIZE_STRING);
+            $phone = filter_input(INPUT_POST, "tlf-fijo", FILTER_SANITIZE_NUMBER_INT);
+            $mobile = filter_input(INPUT_POST, "tlf-movil", FILTER_SANITIZE_NUMBER_INT);
             if (!correctNameFormat($name)) {
                 $errores['nombre'] = "Nombre no v&aacute;lido o no existe: Ejemplo de nombre v&aacute;lido: Manuel Ridao [solo car&aacute;cteres alfab&eacute;ticos y espacios, primera letra may&uacute;scula]";
             }
@@ -139,19 +138,19 @@ function correctMobileFormat($mobile) {
             <form method="post" enctype="multipart/form-data">
                 <input type="text" name="nombre" placeholder="Introduce Nombre" value="<?php echo isset($_POST['nombre']) ? $_POST['nombre'] : ""; ?>">
                 <?php echo (isset($errores['nombre']) ? "<span class='error_form'>" . $errores['nombre'] . "</span>" : ""); ?><br>
-                
+
                 <input type="text" name="email" placeholder="Introduce Email    user@domain.com" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ""; ?>">
                 <?php echo (isset($errores['email']) ? "<span class='error_form'>" . $errores['email'] . "</span>" : ""); ?><br>
-                
+
                 <input type="text" name="twitter" placeholder="twitter   @user" value="<?php echo isset($_POST['twitter']) ? $_POST['twitter'] : ""; ?>">
                 <?php echo (isset($errores['twitter']) ? "<span class='error_form'>" . $errores['twitter'] . "</span>" : ""); ?><br>
-                
+
                 <input type="text" name="tlf-fijo" placeholder="Intoduce Telefono Fijo" value="<?php echo isset($_POST['tlf-fijo']) ? $_POST['tlf-fijo'] : ""; ?>">
                 <?php echo (isset($errores['phone']) ? "<span class='error_form'>" . $errores['phone'] . "</span>" : ""); ?><br>
-                
+
                 <input type="text" name="tlf-movil" placeholder="Introduce Telefono Movil" value="<?php echo isset($_POST['tlf-movil']) ? $_POST['tlf-movil'] : ""; ?>">
                 <?php echo (isset($errores['mobile']) ? "<span class='error_form'>" . $errores['mobile'] . "</span>" : ""); ?><br>
-                
+
                 <label for="provincia">Provincia: </label>
                 <select id="provincia" name="provincia">
                     <option value="Sevilla" selected>Sevilla</option>
@@ -163,11 +162,11 @@ function correctMobileFormat($mobile) {
                     <option value="Granada">Granada</option>
                     <option value="Almeria">Almer&iacute;a</option>
                 </select><br>
-                
+
                 <label>Descripci&oacute;n de la ruta: </label><br>                
                 <textarea name="info" id="info" onClick="this.value = '';">Descripci&oacute;n</textarea>
                 <?php echo (isset($errores['info']) ? "<span class='error_form'>" . $errores['info'] . "</span>" : ""); ?><br>
-                
+
                 <input type="submit" name="envio" value="Enviar" />
                 <input type="reset" name="rest" value="Restaurar" />                  
             </form>

@@ -1,1 +1,4 @@
-pablo;oliva;pablooliva@correo.com;Universidad Pablo de Olavide
+﻿pablo;oliva;pablooliva@correo.com;Universidad Pablo de Olavide
+admin;admin;admin@;Universidad Pablo de Olavide
+victor;victor;victor@victor.com;Universidad de Sevilla
+manuel;manuel;manuel@manuel.com;Universidad de Jaen
