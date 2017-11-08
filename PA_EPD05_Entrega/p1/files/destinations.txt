@@ -26,3 +26,8 @@
 000007;Paris
 000007;Barcelona
 000007;Dublin
+000007;Paris
+000007;Dublin
+000007;Madrid
+000007;Madrid
+000007;Amsterdam

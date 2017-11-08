@@ -85,7 +85,7 @@ function writeAirlineToDataFiles($fileName) {
 
     /* Step 2: File with codes and destinations */
     if ($newAirlineCode !== "") { // This prevents execution if the above check failed because the airline already existed        
-        $fdestinations = fopen('files/destinations.txt', 'a');
+        $fdestinations = fopen($fileName, 'a');
         if ($fdestinations) {
             flock($fdestinations, LOCK_EX);
             for ($i = 0; $i < $_GET["numberOfDestinations"]; $i++) {
@@ -108,6 +108,7 @@ function writeAirlineToDataFiles($fileName) {
         <title></title>
     </head>
     <body>
+        <h1>PA EPD05 P1: AIRLINE INFORMATION SYSTEM</h1>
         <?php
         $fileError = FALSE;
         if (isset($_GET["airlineCityDestinationsSubmitted"]) || $fileError) {

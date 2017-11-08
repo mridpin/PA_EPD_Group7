@@ -2,7 +2,6 @@
 include 'functions.php';
 require_once 'functions.php';
 
-
 ?>
 <html>
     <head>
@@ -32,11 +31,11 @@ require_once 'functions.php';
                 $destinations = listAirlineDestinations($airlineCode, "files/destinations.txt");
                 foreach ($destinations as $dest) {
                     $avgTime = 0;
-                    $flights = findAllCurrentArrivalsForDeparture($airlineCode, trim($dest));
+                    $flights = findAllCurrentArrivalsForDeparture($airlineCode, trim($dest), "files/flights.txt");
                     $totalMinutes = 0;
                     foreach ($flights as $flight) {
                         $time = explode(":", $flight[1]);
-                        $totalMinutes = $time[0] * 60 + $time[0];
+                        $totalMinutes += $time[0] * 60 + $time[1];
                     }
                     $numOfFlights = count($flights);
                     $tableData[] = array($dest, $numOfFlights, ($numOfFlights==0) ? 0 : ($totalMinutes/$numOfFlights/60));
