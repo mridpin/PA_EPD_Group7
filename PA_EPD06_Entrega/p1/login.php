@@ -45,30 +45,30 @@ require_once 'functions.php';
                 mysqli_close($con);
                 header("Location: " . $_SESSION["origin"]);
             } else if (mysqli_num_rows($query) == 0) {
+                // If there is no results that means incorrect login
+                $error = "Incorrect user or password";
+                mysqli_free_result($query);
+                mysqli_close($con);
+            } else {
                 var_dump($query);
                 mysqli_free_result($query);
                 mysqli_close($con);
-                die("SOMETHING WENT WRONG!");
-            } else
-                 (mysqli_num_rows ($query) == 0) {
-                var_dump($query);
-                mysqli_free_result($query);
-                mysqli_close($con);
-                die("SOMETHING WENT WRONG!");
+                die("SOMETHING ELSE WENT WRONG!");
             }
+        }
 
-            if (!isset($_POST['submit']) || isset($error)) {
-                if (isset($error)) {
-                    printErrorMessage($error);
-                }
-                ?>
-                <form method="post" action=".">
-                    <input type="text" name="username" />
-                    <input type="password" name="userpasswd" />
-                    <input type="submit" name ="submit" />
-                </form>
-                <?php
+        if (!isset($_POST['submit']) || isset($error)) {
+            if (isset($error)) {
+                printErrorMessage($error);
             }
             ?>
+            <form method="post" action=".">
+                <input type="text" name="username" />
+                <input type="password" name="userpasswd" />
+                <input type="submit" name ="submit" />
+            </form>
+            <?php
+        }
+        ?>
     </body>
 </html>
