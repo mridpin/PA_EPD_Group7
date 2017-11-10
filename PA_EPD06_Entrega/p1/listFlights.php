@@ -1,7 +1,14 @@
+<!DOCTYPE html>
 <?php
+session_start();
 include 'functions.php';
 require_once 'functions.php';
 
+/*If the user isn't logged in, send him to the login page and save where he came from*/
+if (!isLoggedIn("user")) {
+    $_SESSION["origin"] = $_SERVER["PHP_SELF"];
+    header("Location: login.php");
+}
 ?>
 <html>
     <head>

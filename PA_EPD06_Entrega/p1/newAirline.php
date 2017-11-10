@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include 'functions.php';
 require_once 'functions.php';
 
@@ -115,7 +116,10 @@ function writeAirlineToDataFiles($fileName) {
     </head>
     <body>
         <h1>PA EPD06 EJ1: AIRLINE INFORMATION SYSTEM </h1>
+        
         <?php
+        echo "<p>Logged in as: ".$_SESSION["user"]."</p>";
+        
         $fileError = FALSE;
         if (isset($_GET["airlineCityDestinationsSubmitted"]) || $fileError) {
             $fileError = writeAirlineToDataFiles("files/airlines.txt");
