@@ -94,7 +94,7 @@ function findAllCurrentArrivalsForDeparture($airlineCode, $departure, $fileName)
     return ($fileError) ? !$fileError : $flights;
 }
 
-function checkForLogin ($user) {
+function isLoggedIn ($user) {
     return isset($_SESSION[$user]) && $_SESSION[$user]!="";   
 }
 ?>

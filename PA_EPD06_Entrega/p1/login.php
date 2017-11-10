@@ -33,7 +33,7 @@ require_once 'functions.php';
               $pwd = mysqli_real_escape_string($con, $_POST['password']); */
             $name = $_POST['user'];
             $pwd = $_POST['password'];
-            $query = mysqli_query($con, "SELECT * FROM users WHERE name='" . $name . "' AND pwd='" . $pwd . "'");
+            $query = mysqli_query($con, "SELECT * FROM users WHERE name='" . $name . "' AND password='" . $pwd . "'");
             if (!$query) {
                 var_dump($query);
                 mysqli_close($con);
@@ -62,10 +62,13 @@ require_once 'functions.php';
                 printErrorMessage($error);
             }
             ?>
-            <form method="post" action=".">
-                <input type="text" name="username" />
-                <input type="password" name="userpasswd" />
+            <form method="post" action="login.php">
+                <input type="text" name="user" />
+                <input type="password" name="password" />
                 <input type="submit" name ="submit" />
+            </form>
+            <form method="post" action="register.php">
+                <input type="submit" name="register" value="Register"/>
             </form>
             <?php
         }
