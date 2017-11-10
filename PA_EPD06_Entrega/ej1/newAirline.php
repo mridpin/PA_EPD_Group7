@@ -4,7 +4,7 @@ session_start();
 include 'functions.php';
 require_once 'functions.php';
 
-/*If the user isn't logged in, send him to the login page and save where he came from*/
+/* If the user isn't logged in, send him to the login page and save where he came from */
 if (!isLoggedIn("user")) {
     $_SESSION["origin"] = $_SERVER["PHP_SELF"];
     header("Location: login.php");
@@ -116,10 +116,11 @@ function writeAirlineToDataFiles($fileName) {
     </head>
     <body>
         <h1>PA EPD06 EJ1: AIRLINE INFORMATION SYSTEM </h1>
-        
+
         <?php
-        echo "<p>Logged in as: ".$_SESSION["user"]."</p>";
-        
+        // Display "global" options
+        echo "<p>Logged in as: " . $_SESSION["user"] . "</p>";
+        echo "<form method='post' action='logout.php'><input type='submit' name='logout' value='Logout'/></form><br />";
         $fileError = FALSE;
         if (isset($_GET["airlineCityDestinationsSubmitted"]) || $fileError) {
             $fileError = writeAirlineToDataFiles("files/airlines.txt");

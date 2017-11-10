@@ -1,0 +1,10 @@
+000000,Rome,London,03:40
+000001,London,Paris,02:00
+000001,Paris,London,02:00
+000000,London,Barcelona,03:00
+000005,Seville,London,03:00
+000000,London,Rome,12:12
+000006,Seville,Barcelona,01:30
+000007,Barcelona,Paris,02:00
+000000,Rome,Barcelona,02:22
+000000,Rome,Paris,03:30

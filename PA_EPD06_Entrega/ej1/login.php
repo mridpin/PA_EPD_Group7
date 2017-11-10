@@ -1,13 +1,14 @@
 <?php
 session_start();
-echo $_SESSION["origin"];
+echo "Origin: ".$_SESSION["origin"];
 include 'functions.php';
 require_once 'functions.php';
 
-function updateLastAcess($user) {
+function updateLastAcess($user, $con) {
     // We are already logged in, so no need to create connection or validate values again
     $last_access = date("Y-m-d H:i:s");
-    $sql = "UPDATE users SET last_acess=" . $date . " WHERE user=" . $user;
+    $sql = "UPDATE users SET last_access='" . $last_access . "' WHERE user='" . $user."'";
+    echo "<br />".$sql;
     $query = mysqli_query($con, $sql);
     if (!$query) {
         var_dump($query);
@@ -47,7 +48,9 @@ function updateLastAcess($user) {
               $pwd = mysqli_real_escape_string($con, $_POST['password']); */
             $user = $_POST['user'];
             $pwd = $_POST['password'];
-            $query = mysqli_query($con, "SELECT * FROM users WHERE name='" . $user . "' AND password='" . $pwd . "'");
+            $sql = "SELECT * FROM users WHERE user='" . $user . "' AND password='" . $pwd . "'";
+            echo $sql;
+            $query = mysqli_query($con, $sql);
             if (!$query) {
                 var_dump($query);
                 mysqli_close($con);
@@ -55,7 +58,7 @@ function updateLastAcess($user) {
             } else if (mysqli_num_rows($query) == 1) {
                 // If there is one result that means correct login
                 $_SESSION["user"] = $user;
-                updateLastAcess($user);
+                updateLastAcess($user, $con);
                 mysqli_free_result($query);
                 mysqli_close($con);
                 header("Location: " . $_SESSION["origin"]);

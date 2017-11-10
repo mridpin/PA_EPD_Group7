@@ -4,7 +4,7 @@ session_start();
 include 'functions.php';
 require_once 'functions.php';
 
-/*If the user isn't logged in, send him to the login page and save where he came from*/
+/* If the user isn't logged in, send him to the login page and save where he came from */
 if (!isLoggedIn("user")) {
     $_SESSION["origin"] = $_SERVER["PHP_SELF"];
     header("Location: login.php");
@@ -24,6 +24,10 @@ if (!isLoggedIn("user")) {
         </header>
         <article>
             <?php
+            // Display "global" options
+            echo "<p>Logged in as: " . $_SESSION["user"] . "</p>";
+            echo "<form method='post' action='logout.php'><input type='submit' name='logout' value='Logout'/></form><br />";
+
             if (isset($_GET["airline"])) {
                 echo "Showing information for airline: " . $_GET["airline"];
                 echo "<table style='border:solid;>";
@@ -45,13 +49,13 @@ if (!isLoggedIn("user")) {
                         $totalMinutes += $time[0] * 60 + $time[1];
                     }
                     $numOfFlights = count($flights);
-                    $tableData[] = array($dest, $numOfFlights, ($numOfFlights==0) ? 0 : ($totalMinutes/$numOfFlights/60));
+                    $tableData[] = array($dest, $numOfFlights, ($numOfFlights == 0) ? 0 : ($totalMinutes / $numOfFlights / 60));
                 }
-                /*Sort the data table by number of flights (column 1) */
+                /* Sort the data table by number of flights (column 1) */
                 usort($tableData, function ($a, $b) {
                     // Sorts the matrix using the function provided
                     // More information in https://stackoverflow.com/questions/2699086/sort-multi-dimensional-array-by-value
-                    return $b[2]-$a[2];                    
+                    return $b[2] - $a[2];
                 });
                 foreach ($tableData as $row) {
                     echo "<tr>";
