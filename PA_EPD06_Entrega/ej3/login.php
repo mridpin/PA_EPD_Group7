@@ -1,14 +1,14 @@
 <?php
 session_start();
-echo "Origin: ".$_SESSION["origin"];
+echo "Origin: " . $_SESSION["origin"];
 include 'functions.php';
 require_once 'functions.php';
 
 function updateLastAcess($user, $con) {
     // We are already logged in, so no need to create connection or validate values again
     $last_access = date("Y-m-d H:i:s");
-    $sql = "UPDATE users SET last_access='" . $last_access . "' WHERE user='" . $user."'";
-    echo "<br />".$sql;
+    $sql = "UPDATE users SET last_access='" . $last_access . "' WHERE user='" . $user . "'";
+    echo "<br />" . $sql;
     $query = mysqli_query($con, $sql);
     if (!$query) {
         var_dump($query);
@@ -20,14 +20,14 @@ function updateLastAcess($user, $con) {
 
 <html>
     <head>
-        <title>PA EPD06 EJ1</title>
+        <title>PA EPD06 EJ3</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
             <h1>
-                PA EPD06 EJ1: AIRLINE INFORMATION SYSTEM                   
+                PA EPD06 EJ3: AIRLINE INFORMATION SYSTEM                   
             </h1>
             <h2>
                 LOGIN: 
@@ -44,22 +44,28 @@ function updateLastAcess($user, $con) {
                 mysqli_close($con);
                 die("SELECT ERROR");
             }
-            $user = $_POST['user'];
-            $pwd = $_POST['password'];
-            $sql = "SELECT * FROM users WHERE user='" . $user . "' AND password='" . $pwd . "'";
-            echo $sql;
+            $user = mysqli_real_escape_string($con, $_POST['user']);
+            $hash = mysqli_real_escape_string($con, $_POST['password']);
+            $sql = "SELECT * FROM users WHERE user='" . $user . "'";
             $query = mysqli_query($con, $sql);
             if (!$query) {
                 var_dump($query);
                 mysqli_close($con);
                 die("QUERY ERROR");
-            } else if (mysqli_num_rows($query) == 1) {
-                // If there is one result that means correct login
-                $_SESSION["user"] = $user;
-                updateLastAcess($user, $con);
+            } else if (mysqli_num_rows($query) > 0) {
+                // If there is one+ result that means correct login
+                $row = mysqli_fetch_array($query);
+                if (password_verify($hash, $row["password"])) {
+                    $_SESSION["user"] = $user;
+                    updateLastAcess($user, $con);
+                    mysqli_free_result($query);
+                    mysqli_close($con);
+                    header("Location: " . $_SESSION["origin"]);
+                }
+                // If user found but not password
+                $error = "Incorrect user or password";
                 mysqli_free_result($query);
                 mysqli_close($con);
-                header("Location: " . $_SESSION["origin"]);
             } else if (mysqli_num_rows($query) == 0) {
                 // If there is no results that means incorrect login
                 $error = "Incorrect user or password";

@@ -7,14 +7,14 @@ require_once 'functions.php';
 
 <html>
     <head>
-        <title>PA EPD06 EJ1</title>
+        <title>PA EPD06 EJ3</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
             <h1>
-                PA EPD06 EJ1: AIRLINE INFORMATION SYSTEM                   
+                PA EPD06 EJ3: AIRLINE INFORMATION SYSTEM                   
             </h1>
             <h2>
                 REGISTER: 
@@ -31,11 +31,12 @@ require_once 'functions.php';
                 mysqli_close($con);
                 die("SELECT ERROR");
             }
-            $name = $_POST["name"];
-            $user = $_POST["user"];
-            $pwd = $_POST["password"];
+            $name = mysqli_real_escape_string($con, $_POST['name']);
+            $user = mysqli_real_escape_string($con, $_POST['user']);
+            $pwd = mysqli_real_escape_string($con, $_POST['password']);
+            $hash = password_hash($pwd, PASSWORD_DEFAULT);
             $date = date("Y-m-d H:i:s");
-            $sql = "INSERT INTO users (name, user, password, last_access) VALUES ('" . $name . "', '" . $user . "', '" . $pwd . "', '" . $date . "')";
+            $sql = "INSERT INTO users (name, user, password, last_access) VALUES ('" . $name . "', '" . $user . "', '" . $hash . "', '" . $date . "')";
             $query = mysqli_query($con, $sql);
             if (!$query) {
                 var_dump($query);

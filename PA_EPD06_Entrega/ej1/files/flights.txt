@@ -8,3 +8,4 @@
 000007,Barcelona,Paris,02:00
 000000,Rome,Barcelona,02:22
 000000,Rome,Paris,03:30
+000007,Madrid,Amsterdam,02:55
