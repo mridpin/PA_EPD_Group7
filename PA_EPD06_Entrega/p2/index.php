@@ -10,6 +10,18 @@ Grupo 7
     <body>
         <?php
         
+        function createConnection() //Establece conexion con la base de datos
+        {
+            $con = new mysqli("localhost","root","");
+            if(!$con)
+                die("No hay conexion con la SGBD");
+            $db = mysqli_select_db($con,"p2");
+            if(!$db)
+                die("No se ha encontrado la BD");
+            return $con;
+        }
+        
+        
         function getDateFormat() //Formato correcto para los archivos
         {
             $now = new DateTime();
@@ -21,6 +33,7 @@ Grupo 7
             $url = "https://source.unsplash.com/featured/";
             $auxi = "$";
             $tags=""; //Para escribir en el fichero
+            //No saneamos las entradas ya que no van a presentar ningun peligro porque accedemos a una url
             foreach ($raw_tags as $aux) {
                 $auxi .= "<" . $aux . ">";
                 $tags.=$aux;
@@ -33,40 +46,45 @@ Grupo 7
             $url .= urlencode($auxi); //El resto de contenido de la url debe ser codificado
             $filename.='.jpg';
             file_put_contents("$filename", fopen("$url", 'r'));
-            writeToFile($tags, $filename);
+            writeToDB($tags, $filename);
         }
         
-        function writeToFile($tags,$filename) //Escribimos en un fichero las categorias de la foto y el nombre del archivo
+        function writeToDB($tags,$filename) //Escribimos en la base de datos las categorias de la foto y el nombre del archivo
         {
-            //Esta funcion hace que abramos el fichero (si no existe lo crea), escribamos en el fichero con un lock y finalmente cierre el fichero
-            file_put_contents($GLOBALS['serverFile'],$tags. "\t" . $filename . "\r\n", FILE_APPEND | LOCK_EX);
+            $con = createConnection();
+            $tags = mysqli_real_escape_string($con,$tags); //Saneamos ambas entradas
+            $filename = mysqli_real_escape_string($con,$filename);
+            $query = ("INSERT INTO server_images (tags,fname) VALUES ('".$tags."', '".$filename."')");
+            $res = mysqli_query($con, $query);
+            if(!$res)
+            {
+                echo("Error ".mysqli_error($con));
+            }
+            mysqli_close($con); //Cerramos la conexion con la base de datos
             
         }
         
-        function readFromFile()
+        function readFromDB()
         {
             $data; //Matriz de 2 dimensiones donde el primero son los tags con la fecha de obtencion  y el segundo el nombre de la foto
             $i=0;
-            if(file_exists($GLOBALS['serverFile']))
-            {
-                $f = fopen($GLOBALS['serverFile'],'r');             
-                    flock($f,LOCK_SH); //Bloqueamos la escritura del fichero
-                    while(($line = fgets($f)) !== false)
-                    {
-                        $line = rtrim($line, "\r\n");
-                        $rawData = explode("\t", $line); //La primera posicion tendra los tags y la segunda el nombre de la foto
-                        $data[$i][0] = $rawData[0];
-                        $data[$i][1] = $rawData[1];
-                        $i++;
-                    }
-                    flock($f,LOCK_UN);
-                    fclose($f);              
-            }
-            else
+            $con = createConnection();
+            $query = ("SELECT * FROM server_images");
+            $res=mysqli_query($con, $query);
+            if(!mysqli_num_rows($res)) //Si la tabla esta vacia
             {
                 $data="No hay imagenes cargadas";
             }
-            
+            else
+            {
+                while($line = mysqli_fetch_array($res))
+                    {
+                        $data[$i][0] = $line['tags'];
+                        $data[$i][1] = $line['fname'];
+                        $i++;
+                    }     
+            }
+            mysqli_close($con);
             return $data;
         }
 
@@ -106,7 +124,6 @@ Grupo 7
             return $result;
             
         }
-        $serverFile='server_images.txt';
         // Parte superior de la pagina
         // Tenemos que comprobar si venimos de un formulario
         if (isset($_POST["checkboxes"]) || isset($_POST["file"])) { //Hemos venido de un formulario
@@ -127,7 +144,7 @@ Grupo 7
             else
                 echo "ERROR: El archivo debe ser un fichero de texto";
         }
-        echo createTable(readFromFile()); //Intentamos imprimir la tabla
+        echo createTable(readFromDB()); //Intentamos imprimir la tabla
         ?>
         <!Parte inferior de la pagina>
     <h3>Seleccione o suba un fichero, con las categorias de la foto que desea ver:</h3>
