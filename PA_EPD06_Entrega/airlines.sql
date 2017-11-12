@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2017 at 12:37 PM
+-- Generation Time: Nov 12, 2017 at 03:50 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -39,7 +39,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`name`, `user`, `password`, `last_access`) VALUES
 ('Aministrator', 'admin', 'admin', '2017-11-10 12:28:34'),
-('Lola M', 'lola', '$2y$10$XTjPNXfd1cDTpmI5Eg6HO.yeZLKuEZalnbnJv6v6C7KWfjx2CmNx6', '2017-11-10 12:35:54');
+('Lola M', 'lola', '$2y$10$XTjPNXfd1cDTpmI5Eg6HO.yeZLKuEZalnbnJv6v6C7KWfjx2CmNx6', '2017-11-12 15:34:40');
 
 --
 -- Indexes for dumped tables
