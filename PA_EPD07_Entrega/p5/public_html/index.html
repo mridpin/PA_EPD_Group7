@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Grupo 7
+-->
+<html>
+    <head>
+        <script type="text/javascript">
+        <!--
+            function randomValues(min,max,nvalues)
+            {
+                var i=0;
+                var values = [];
+                for(i=0;i<nvalues;i++)
+                {
+                    values.push(Math.random()*(max-min+1)+min); //Genera un valor entre min y max (ambos incluidos)
+                }
+                return values;
+            }
+            
+            function printTable(names,values) //Redondeamos las temperaturas a un solo decimal
+            {
+                var i =0;
+                var result="<table>\n\
+                            <tr>\n\
+                                <th>Patient</th>\n\
+                                <th>Temperature (&ordm;C)</th>\n\
+                            </tr>";
+                for(i=0;i<names.length;i++)
+                {
+                    result+="<tr>\n\
+                                <td>"+names[i]+"</td>\n\
+                                <td>"+values[i].toFixed(1)+"</td>\n\
+                            </th>";
+                }
+                result+="</table>";
+                return result;
+            }
+            
+        //-->
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            <!--
+                var min; //Consideramos las temperaturas como tipo Float
+                var max;
+                var names= ["Victor Martinelli","Manuel Ridao","Pablo Oliva"];
+                do
+                {
+                    min=parseFloat(prompt("Please enter the minimun temperature for the patients","")); 
+                    max=parseFloat(prompt("Please enter the maximun temperature for the patients",""));
+                }
+                while(min>max);
+                var values = randomValues(min,max,names.length);
+                document.write(printTable(names,values));
+            //-->
+        </script>
+    </body>
+</html>
