@@ -29,7 +29,7 @@ Grupo 7
                 {
                     result+="<tr>\n\
                                 <td>"+names[i]+"</td>\n\
-                                <td>"+values[i].toFixed(1)+"</td>\n\
+                                <td>"+values[i].toFixed(2)+"</td>\n\
                             </th>";
                 }
                 result+="</table>";
@@ -42,16 +42,18 @@ Grupo 7
     <body>
         <script type="text/javascript">
             <!--
-                var min; //Consideramos las temperaturas como tipo Float
-                var max;
+                var min=""; //Consideramos las temperaturas como tipo Float
+                var max="";
+                var sucess=0;
                 var names= ["Victor Martinelli","Manuel Ridao","Pablo Oliva"];
-                do
+                while(sucess==0)
                 {
-                    min=parseFloat(prompt("Please enter the minimun temperature for the patients","")); 
-                    max=parseFloat(prompt("Please enter the maximun temperature for the patients",""));
+                    min=prompt("Please enter the minimun temperature for the patients",""); 
+                    max=prompt("Please enter the maximun temperature for the patients","");
+                    if(!isNaN(min) && !isNaN(max) && min<max)
+                        sucess++;
                 }
-                while(min>max);
-                var values = randomValues(min,max,names.length);
+                var values = randomValues(parseFloat(min),parseFloat(max),names.length);
                 document.write(printTable(names,values));
             //-->
         </script>
