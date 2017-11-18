@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PA EPD07 P2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            /**
+             * Array.prototype.[method name] allows you to define/overwrite an objects method
+             * needle is the item you are searching for
+             * this is a special variable that refers to "this" instance of an Array.
+             * returns true if needle is in the array, and false otherwise
+             * To sum up, this defines a contains function for array types.
+             */
+            Array.prototype.contains = function (needle) {
+                for (i in this) {
+                    if (this[i] == needle)
+                        return true;
+                }
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>PA EPD07 P2</h1>
+        <script>
+            var input = prompt("Introduce a [0-9] number to look for", "");
+            var vec = [0, 3, 4, 8, 9];
+            if (vec.contains(input)) {
+                document.write("Array contains " + input);
+            } else {
+                document.write("Array does not contain " + input);
+            }
+            document.write("<br />Source: https://css-tricks.com/snippets/javascript/javascript-array-contains/");
+        </script>
+    </body>
+</html>

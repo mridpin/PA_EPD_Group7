@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PA EPD07 P2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function isThisAMac() {
+                return navigator.userAgent.indexOf('Mac OS X') !== -1;
+            }
+            function whatOperatingSystem() {
+                var res = "";
+                if (navigator.userAgent.indexOf('Mac OS X') !== -1) {
+                    res = "mac";
+                } else if (navigator.userAgent.indexOf('Windows') !== -1) {
+                    res = "win";
+                } else if (navigator.userAgent.indexOf('Linux') !== -1) {
+                    res = "gnu";
+                } else {
+                    res = "wat";
+                }
+                return res;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>PA EPD07 P2</h1>
+        <script>
+            /*if (isThisAMac()) {
+             document.write("This computer is a Mac");
+             } else {
+             document.write("This computer is not a Mac");
+             } */
+            switch (whatOperatingSystem()) {
+                case "mac":
+                    document.write("This computer is a Mac");
+                    break;
+                case "win":
+                    document.write("This computer is a Windows");
+                    break;
+                case "gnu":
+                    document.write("This computer is a Linux");
+                    break;
+                default:
+                    document.write("This computer is not a Mac, Windows or Linux");
+            }
+            document.write("<br />Source: https://css-tricks.com/snippets/javascript/test-mac-pc-javascript/");
+            document.write("<br />Edited so it works for Linux too");
+        </script>
+    </body>
+</html>
