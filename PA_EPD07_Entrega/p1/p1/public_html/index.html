@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>GROUP 7 EPD07 P1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            /*Returns a substring of str from parameters[0] to parameters[1], both included.*/
+            function subOperation(str, parameters) {
+                var result = "";
+                var parameters = parameters.split(",");
+                if (parameters.length !== 2 || isNaN(parameters[0]) || isNaN(parameters[1]) || parameters[0] > parameters[1] || parameters[0] < 0 || parameters[1] < 0) {
+                    result = "Error in parameters of sub operation. Usage: sub(ini,fin)"
+                } else {
+                    result = str.slice(parseInt(parameters[0]), parseInt(parameters[1]) + 1);
+                }
+                return result;
+            }
+            /*Concats parameters to str*/
+            function catOperation(str, parameters) {
+                var result = str + parameters;                
+                return result;
+            }
+            function repOperation(str, parameters) {
+                var result = "";
+                var parameters = parameters.split(",");
+                if (parameters.length !== 2 ) {
+                    result = "Error in parameters of sub operation. Usage: rep(search,replace)"
+                } else {
+                    result = str.replace(parameters[0], parameters[1]);
+                }
+                return result;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>GROUP 7 EPD07 P1</h1>
+        <script type="text/javascript">
+            var input = prompt("Please introduce string. \nFormat 'string;rep(search,replace);cat(string);sub(ini,fin)'. \nInput not matching the format will be ignored", "");
+            var input = input.split(";");
+            var error = false;
+            operators = [];
+            parameters = [];
+            // Start at 1 because 0 is the target string
+            for (i = 1; i < input.length; i++) {
+                // Get the 3 letter operator
+                operators[i - 1] = input[i].slice(0, 3);
+                // Get the parameters between the parentheses
+                parameters[i - 1] = input[i].slice(4, input[i].length - 1);
+            }
+
+            // Iterate through variables to find
+            res = [];
+            /*This loop allows the operations to be called in any order*/
+            for (i = 0; i < operators.length; i++) {
+                switch (operators[i]) {
+                    case "sub":
+                        res.push(subOperation(input[0], parameters[i]));
+                        break;
+                    case "cat":
+                        res.push(catOperation(input[0], parameters[i]));
+                        break;
+                    case "rep":
+                        res.push(repOperation(input[0], parameters[i]));
+                        break;
+                    default:
+                        res.push("Valid operation and parameters not found");
+                        break;
+                }
+            }
+            for (x in res) {
+                document.write("Result of operation " + x + ": " + res[x].toString() + "<br />");
+            }
+
+        </script>        
+    </body>
+</html>
