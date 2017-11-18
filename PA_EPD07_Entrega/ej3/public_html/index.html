@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PA EPD07 EJ3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>PA EPD07 EJ3</h1>
+        <script>
+            var cols = 9;
+            var rows = 5;
+            var x = 0;
+            var y = 0;
+            /*Outer loop controls rows. Increments of 1*/
+            while ((x += 1) <= rows) {
+                /*Inner loop controls cols. Increments of x*/
+                while ((y += x) <= cols) {
+                    document.write(y);
+                }
+                y = 0; //Reset y
+                document.write("<br />");
+            }
+        </script>
+    </body>
+</html>
