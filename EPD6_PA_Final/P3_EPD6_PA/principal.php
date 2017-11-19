@@ -149,7 +149,7 @@ and open the template in the editor.
 
             disconnect($enlace);
             echo '
-         <form method="get" >
+         <form method="Post" action="logout.php">
             <input type="submit" name="logout" value="logout">
          </form>';
 
