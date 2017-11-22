@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PA EPD08 EJ1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+
+            function initializePage(todaysNews) {
+                /* Initialize the page with the first news piece*/
+                var h3 = document.getElementById("newsHeader");
+                var h3Text = document.createTextNode(todaysNews[0][0]);
+                h3.appendChild(h3Text);
+                var p = document.getElementById("newsContent");
+                var pText = document.createTextNode(todaysNews[0][1]);
+                p.appendChild(pText);   
+
+                /*Initialize the header list*/
+                var list = document.getElementById("newsList");
+                for (var i = 0; i < todaysNews.length; i++) {
+                    var listElement = document.createElement("li");
+                    var listElementText = document.createTextNode(todaysNews[i][0]);
+                    var listButton = document.createElement("button");
+                    /*Add a clicable element to the list. With CSS, it can be made to look like a link <a>*/
+                    //listButton.href = "#";
+                    /*https://stackoverflow.com/questions/6048561/setting-onclick-to-use-current-value-of-variable-in-loop*/
+                    listButton.addEventListener("click", function (j) {
+                        /*Crea una funcion anonima externa donde j es i para cada funcion interna. Con una sola no funciona*/
+                        return function () {
+                            swapNews(todaysNews[j], h3, p);
+                            return false;
+                        };
+                    }(i));
+                    listButton.appendChild(listElementText);
+                    listElement.appendChild(listButton);
+                    list.appendChild(listElement);
+                }
+                
+                /*Rotate */
+                /*The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).*/
+                var i = 0;
+                /*In this case, it calls an anonimous function*/
+                var interVal = setInterval(function () {
+                    swapNews(todaysNews[i], h3, p);
+                    i = (i + 1) % todaysNews.length;
+                }, 3000);
+            }
+            function swapNews(news, h3, p) {
+                var newHeader = document.createTextNode(news[0]);
+                var newContent = document.createTextNode(news[1]);
+                h3.replaceChild(newHeader, h3.firstChild);
+                p.replaceChild(newContent, p.firstChild);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>PA EPD08 EJ1</h1>
+        <h2>FAKE NEWS NETWORK</h2>
+        <script>
+            var todaysNews = [
+                ["This is fake news", "Please don't watch the news because they are fake"],
+                ["[Sorry, this post has been blocked by your ISP. Please pay $10.95/m to gain access to Reddit.]", "This is the best video of a monkey i've ever seen! As a Canadian i'm glad this post is in no way blocked."],
+                ["100€ Steam Gift Card Giveaway", "Hi Everybody! I want to thank you guys for your inspiration and your feedback while I was working on my project that helps to get your RGB lighting on point. Now its on Kickstarter and Id like to give back to you with a 100€ Steam Gift Card Giveaway Proof"],
+                ["When you have a PC but not a part of the MR", "Not good enough. You must go to the manufacturer and become the lube"],
+                ["Wt ring u got bithc?", "10 dexterity. But don't tell anyone you levelled that up, u fucking faggot"]
+            ];
+        </script>
+        <h3 id="newsHeader"></h3>
+        <p id="newsContent"></p>
+        <ul id="newsList"></ul>
+        <script>
+            initializePage(todaysNews);
+        </script>
+    </body>
+</html>
