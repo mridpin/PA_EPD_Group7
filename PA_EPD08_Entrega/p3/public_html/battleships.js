@@ -162,8 +162,8 @@ function countShips(maxShipsAllowed) {
                 ship = 0;
             }
             if (ship === maxShipSize) {
-                shipCounter += 1;
                 ship = 0;
+                shipCounter += 1;
             }
 
         }
