@@ -131,44 +131,64 @@ function paintBoard(pos) {
     }
 }
 function checkShipIntegrity(maxShipsAllowed, currentShipCounter) {
-    //Step 1: count ships and update visual counter
-    var currentShips = countShips(maxShipsAllowed);
-    //alert(currentShips);
+    /* Counts the ships and prints the information*/
+    var currentShips = countShips();
     var currentShipsText = document.createTextNode(currentShips.toString());
     currentShipCounter.replaceChild(currentShipsText, currentShipCounter.firstChild);
 
-    return currentShips === maxShipsAllowed;
-}
-function checkShipsLength() {
-
+    return currentShips >= maxShipsAllowed;
 }
 
-function countShips(maxShipsAllowed) {
+function countShips() {
     /*To count ships, we iterate horizontally. If we find a 1, we start "filling" a ship. If the next place is 0, 
      * the ship is reset. If the next place is a 1, we fill the ship until a 0 or a board limit is found. 
      * Then, we do the same vertically. This method does not allow 1 piece ships, and if two ships are in T or L shape,
      * the horizontal one will be longer  */
     var maxShipSize = parseInt(document.getElementById("shipSize").value);
-    var shipCounter = 0;
-    var ship = 0; //"empty ship"
+    var shipCounter = []; // Array of ships
+    var ship = []; //Array if ship pieces
+    
+    /* Iterate horizontally */
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board.length; j++) {
+            // Horizontal iteration
             if (board[i][j] === 1) {
-                // A new ship piece has been found, build a ship
-                ship += 1;
+                ship.push(1);
             }
-            if (board[i][j] === 0 && ship === 1) {
-                // A vertical ship has been found, reset the ship counter
-                ship = 0;
+            if (board[i][j] === 0 && ship.length === 1) {
+                // A vertical ship or a single piece ship has been found, reset the ship counter
+                ship.length = 0;
             }
-            if (ship === maxShipSize) {
-                ship = 0;
-                shipCounter += 1;
-            }
-
         }
-        // Board edge reached, reset the ship builder:
-        ship = 0;
+        // Board edge reached, add the current ship if valid and reset the ship builder:
+        if (ship.length > 1) {
+            shipCounter.push(ship);
+        }
+        ship.length = 0;
     }
-    return shipCounter;
+    /* Iterate vertically */
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board.length; j++) {
+            // Vertical iteration
+            if (board[j][i] === 1) {
+                ship.push(1);
+            }
+            if (board[j][i] === 0 && ship.length === 1) {
+                // A horizontal ship or a single piece ship has been found, reset the ship counter
+                ship.length = 0;
+            }
+            
+            if ((board[j][i] === 0 && ship.length > 1) || (ship.length === maxShipSize)) {
+                // Create a new ship if we find water or the ship is already full
+                shipCounter.push(ship);
+                ship.length = 0;
+            }
+        }
+        // Board edge reached, add the current ship if valid and reset the ship builder:
+        if (ship.length > 1) {
+            shipCounter.push(ship);
+        }
+        ship.length = 0;
+    }
+    return shipCounter.length;
 }
