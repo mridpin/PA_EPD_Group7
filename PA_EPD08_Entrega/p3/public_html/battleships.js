@@ -1,7 +1,7 @@
 
 
 //GLOBAL VARIABLES  
-var size = 5; //Only square boards allowed because we are not savages
+var size = 7; //Only square boards allowed because we are not savages
 var boardContainer = document.getElementById("boardSection");
 /* board will hold the following values:
  *  0: water
@@ -157,6 +157,12 @@ function countShips() {
             }
             if (board[i][j] === 0 && ship.length === 1) {
                 // A vertical ship or a single piece ship has been found, reset the ship counter
+                ship.length = 0;
+            }
+            
+            if ((board[i][j] === 0 && ship.length > 1) || (ship.length === maxShipSize)) {
+                // Create a new ship if we find water or the ship is already full
+                shipCounter.push(ship);
                 ship.length = 0;
             }
         }
