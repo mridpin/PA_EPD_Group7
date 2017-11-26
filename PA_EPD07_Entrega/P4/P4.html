@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Problema4</title>
+    <style media="screen">
+      .my{
+        border-style: solid;
+        border-width: 5px;
+        max-width: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+    <!--
+    function esPrimo(num) {
+        div=0;
+        i=1;
+        iMax=Math['round'](num/2);
+        res= false;
+        while (i<=num && div<3) {
+          if(num%i==0){
+            div++;
+          }
+          i++;
+        }
+        if(div<3){
+          res= true;
+        }
+        return res;
+    }
+    function imprimirPrimos(Primos, mayor){
+      document.write("Los numero primos son: ");
+      for (var i = 0; i < Primos.length; i++) {
+        document.write(Primos[i] + ", ");
+      }
+      }
+    //-->
+</script>
+  </head>
+  <body>
+    <h1>Problema 4</h1>
+    <script type="text/javascript">
+    <!--
+    var num = prompt("Introduce un numero entero (0 para salir): ", "");
+    var Primos = new Array()
+    var k=0;
+    var np=0;
+    var mayor=0;
+
+
+    while (num!=0) {
+      if(esPrimo(num)){
+        Primos[k]=num;
+        if(num>mayor){
+          mayor=num;
+        }
+        k++;
+      }else{
+        np++;
+      }
+
+       num = prompt("Introduce un numero (0 para salir): ", "");
+    }
+          imprimirPrimos(Primos, mayor);
+          if(np>k){
+          document.write("<br/>Has introducido un total de "+k+" n&uacute;meros primos y <div class = 'my'>"+np+"</div> que no lo son ");
+        }else{
+          document.write("<br/>Has introducido un total de <div class = 'my'>"+k+"</div> n&uacute;meros primos y "+np+" que no lo son ");
+        }
+
+
+    //-->
+</script>
+  </body>
+</html>
