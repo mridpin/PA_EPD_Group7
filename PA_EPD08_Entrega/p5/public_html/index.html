@@ -18,9 +18,11 @@ https://www.w3schools.com/jsref/met_table_insertrow.asp
             var table = document.getElementsByTagName("table")[0];
         }
         
-        function addFila()
+        function addFila(table,imageSource)
         {
-            
+            //Asi lo agregamos al final de la tabla
+            table.insertRow(-1);
+            table.inserCell(-1);
         }
         
 
