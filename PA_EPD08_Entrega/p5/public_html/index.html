@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Grupo 07
+
+https://www.w3schools.com/jsref/met_table_insertrow.asp
+-->
+<html>
+    <head>
+        <title>EPD08-P5-Grupo7</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script language="JavaScript">
+
+        function processData()
+        {
+            var categorias = split(",",document.getElementsByTagName("textarea").value);
+            var table = document.getElementsByTagName("table")[0];
+        }
+        
+        function addFila()
+        {
+            
+        }
+        
+
+
+
+        </script>
+
+    </head>
+    <body>
+        <table border=1>
+            <tr>
+                <th>man</th>
+                <th>woman</th>
+            </tr>
+        </table>
+        
+        <h3>Por favor indique las categorias deseadas</h3>
+        
+        <br>
+            
+            <textarea name="categorias" cols="20" rows="5"></textarea>
+            <br>
+            <br>
+            <input type="submit" name="enviar" value="Nueva Fila" onclick="processData()">
+        
+    </body>
+</html>
