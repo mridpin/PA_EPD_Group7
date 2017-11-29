@@ -14,8 +14,9 @@ https://www.w3schools.com/jsref/met_table_insertrow.asp
 
         function processData()
         {
-            var categorias = split(",",document.getElementsByTagName("textarea").value);
+            var categorias = document.getElementsByTagName("textarea")[0].value.split(",");
             var table = document.getElementsByTagName("table")[0];
+            addFila(table,imagesURL(categorias));
         }
         
         function addFila(table,imagesURL)
@@ -29,14 +30,17 @@ https://www.w3schools.com/jsref/met_table_insertrow.asp
             
             for(var i=0;i<imagesURL.length;i++)
             {
-                cells[i] = row.inserCell(-1);
+                cells[i] = row.insertCell(-1);
             }
             
             //Agregamos a cada celda un enlace a la imagen generada
             
             for(var i=0;i<cells.length;i++)
             {
-                cells[i].textContent = "<img src='"+images[i]+"'>"
+                var aux = document.createElement("img");
+                aux.setAttribute("src", imagesURL[i]);
+                aux.setAttribute("width","300px");
+                cells[i].appendChild(aux);
             }
  
         }
@@ -51,7 +55,7 @@ https://www.w3schools.com/jsref/met_table_insertrow.asp
             
             //Primero rellenemos al array resultdo con la URL por defecto
             
-            for(var i=0;i<defaultURL.length;i++)
+            for(var i=0;i<defaultTags.length;i++)
             {
                 result[i] = defaultURL + defaultTags[i];
             }
