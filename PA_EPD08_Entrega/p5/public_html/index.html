@@ -18,11 +18,60 @@ https://www.w3schools.com/jsref/met_table_insertrow.asp
             var table = document.getElementsByTagName("table")[0];
         }
         
-        function addFila(table,imageSource)
+        function addFila(table,imagesURL)
         {
-            //Asi lo agregamos al final de la tabla
-            table.insertRow(-1);
-            table.inserCell(-1);
+            //Asi lo agregamos una nueva fila y unas nuevas celdas al final de la tabla
+            var row = table.insertRow(-1);
+            
+            var cells = [];
+            
+            //Agregamos tantas celdas como nos hagan falta
+            
+            for(var i=0;i<imagesURL.length;i++)
+            {
+                cells[i] = row.inserCell(-1);
+            }
+            
+            //Agregamos a cada celda un enlace a la imagen generada
+            
+            for(var i=0;i<cells.length;i++)
+            {
+                cells[i].value = "<img src='"+images[i]+"'>"
+            }
+ 
+        }
+        
+        function imagesURL(tags)
+        {
+            var defaultURL="https://source.unsplash.com/featured/?";
+            
+            var defaultTags=['man','woman'];
+            
+            var result = [];
+            
+            //Primero rellenemos al array resultdo con la URL por defecto
+            
+            for(var i=0;i<defaultURL.length;i++)
+            {
+                result[i] = defaultURL + defaultTags[i];
+            }
+            
+            //Para cada resultado, le agregamos los tags del usuario y le ponemos 
+            //la marca temporal necesaria
+            
+            for(var i=0;i<result.length;i++)
+            {
+                
+                for(var j=0;j<tags.length;j++)
+                {
+                    result[i]+=","+tags[j]; 
+                }
+                
+                result[i]+="&"+Date.now();
+                
+            }
+
+            return result;
         }
         
 
