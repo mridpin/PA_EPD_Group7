@@ -11,22 +11,48 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             #solution {
+                float: left;
                 width: 40%;
+                padding: 5%;
+                box-sizing: border-box;
             }
             #game {
-                float: right;
+                float: left;
                 width: 30%;
+                padding: 5%;
+                box-sizing: border-box;
             }
             #errors {
                 float: right;
                 width: 30%;
+                padding: 5%;
+                box-sizing: border-box;
+            }
+             #input {
+                box-sizing: border-box;
             }
         </style>
     </head>
     <body>
         <h1>PA EPD08 P4 GROUP7</h1>
-        <div id="solution"></div>
-        <div id="game"></div>
-        <div id="errors"></div>
+        Introduce a letter: <input id="input" type="text" name="text" maxlength="1" />
+        <div id="solution">
+            <h4>Solution:</h4>
+        </div>
+        <div id="game">
+            <h4>Game:</h4>
+            <table id="table">
+                <tr id="results">
+
+                </tr>
+                <tr id="underscores">
+
+                </tr>               
+            </table>            
+        </div>
+        <div id="errors">
+            <h4>Errors:</h4>
+        </div>
+        <script src="program.js"></script>
     </body>
 </html>
