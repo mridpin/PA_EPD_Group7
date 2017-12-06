@@ -1,16 +1,15 @@
 
 
 //GLOBAL VARIABLES  
-var size = 7; //Only square boards allowed because we are not savages
+var size = 4; //Only square boards allowed because we are not savages
 var boardContainer = document.getElementById("boardSection");
 /* board will hold the following values:
  *  0: water
  *  1: tile with new ship or ship part
- *  2. tile with existing ship
  */
 var board = initializeBoard([size, size]);
 var shipCounter = document.getElementById("shipCounter");
-var shipCounterText = document.createTextNode("gfg");
+var shipCounterText = document.createTextNode("0");
 shipCounter.appendChild(shipCounterText);
 var maxShips = 6;
 /*Global variable for button clicked:
@@ -142,59 +141,70 @@ function checkShipIntegrity(maxShipsAllowed, currentShipCounter) {
 function countShips() {
     /*To count ships, we iterate horizontally. If we find a 1, we start "filling" a ship. If the next place is 0, 
      * the ship is reset. If the next place is a 1, we fill the ship until a 0 or a board limit is found. 
-     * Then, we do the same vertically. This method does not allow 1 piece ships, and if two ships are in T or L shape,
-     * the horizontal one will be longer  */
+     * Then, we do the same vertically, but allowing 1 piece ships. If two ships are in T or L shape, the horizontal one will be longer  */
     var maxShipSize = parseInt(document.getElementById("shipSize").value);
     var shipCounter = []; // Array of ships
-    var ship = []; //Array if ship pieces
-    
+    var ship = []; //Array of ship pieces
+    var newBoard = copyMatrix(board);
+
     /* Iterate horizontally */
-    for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board.length; j++) {
+    for (var i = 0; i < newBoard.length; i++) {
+        for (var j = 0; j < newBoard.length; j++) {
             // Horizontal iteration
-            if (board[i][j] === 1) {
+            if (newBoard[i][j] === 1) {
                 ship.push(1);
+                newBoard[i][j] = 2;
             }
-            if (board[i][j] === 0 && ship.length === 1) {
+            if (newBoard[i][j] === 0 && ship.length === 1) {
                 // A vertical ship or a single piece ship has been found, reset the ship counter
                 ship.length = 0;
+                newBoard[i][j-1] = 1;
             }
-            
-            if ((board[i][j] === 0 && ship.length > 1) || (ship.length === maxShipSize)) {
+
+            if ((newBoard[i][j] === 0 && ship.length > 1) || (ship.length === maxShipSize)) {
                 // Create a new ship if we find water or the ship is already full
                 shipCounter.push(ship);
                 ship.length = 0;
             }
         }
         // Board edge reached, add the current ship if valid and reset the ship builder:
-        if (ship.length > 1) {
+        if (ship.length >= 1) {
             shipCounter.push(ship);
         }
         ship.length = 0;
     }
     /* Iterate vertically */
-    for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board.length; j++) {
+    for (var i = 0; i < newBoard.length; i++) {
+        for (var j = 0; j < newBoard.length; j++) {
             // Vertical iteration
-            if (board[j][i] === 1) {
+            if (newBoard[j][i] === 1) {
                 ship.push(1);
+                newBoard[j][i] = 2;
             }
-            if (board[j][i] === 0 && ship.length === 1) {
+            /*if (newBoard[j][i] === 0 && ship.length === 1) {
                 // A horizontal ship or a single piece ship has been found, reset the ship counter
                 ship.length = 0;
-            }
-            
-            if ((board[j][i] === 0 && ship.length > 1) || (ship.length === maxShipSize)) {
+            }*/
+
+            if ((newBoard[j][i] === 0 && ship.length >= 1) || (ship.length === maxShipSize)) {
                 // Create a new ship if we find water or the ship is already full
                 shipCounter.push(ship);
                 ship.length = 0;
             }
         }
         // Board edge reached, add the current ship if valid and reset the ship builder:
-        if (ship.length > 1) {
+        if (ship.length >= 1) {
             shipCounter.push(ship);
         }
         ship.length = 0;
     }
     return shipCounter.length;
+}
+
+function copyMatrix(matrix) {
+    var newMatrix = [];
+    for (var i = 0; i < matrix.length; i++) {
+        newMatrix[i] = matrix[i].slice();
+    }
+    return newMatrix;
 }
