@@ -6,11 +6,55 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>PA EPD09 EJ2 GROUP7</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+        <script src="functions.js" ></script>
+        <style>
+            #solution {
+                float: left;
+                width: 40%;
+                padding: 5%;
+                box-sizing: border-box;
+            }
+            #game {
+                float: left;
+                width: 30%;
+                padding: 5%;
+                box-sizing: border-box;
+            }
+            #errors {
+                float: right;
+                width: 30%;
+                padding: 5%;
+                box-sizing: border-box;
+            }
+             #input {
+                box-sizing: border-box;
+            }
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>PA EPD09 EJ2 GROUP7</h1>
+        Introduce a letter: <input id="input" type="text" name="text" maxlength="1" />
+        <div id="solution">
+            <h4>Solution:</h4>
+        </div>
+        <div id="game">
+            <h4>Game:</h4>
+            <table id="table">
+                <tr id="results">
+
+                </tr>
+                <tr id="underscores">
+
+                </tr>               
+            </table>            
+        </div>
+        <div id="errors">
+            <h4>Errors:</h4>
+        </div>
+        <script src="program.js"></script>
     </body>
 </html>
