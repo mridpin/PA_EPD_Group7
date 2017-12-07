@@ -32,78 +32,75 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
         <link rel="dns-prefetch" href="//login.wikimedia.org"/>
         <link rel="dns-prefetch" href="//meta.wikimedia.org" />
         <!--
-        Aqui empieza el codigo del problema
+        Aqui empieza el codigo del ejercicio
         -->
-        
-        <script language="JavaScript">
-
-            function generateInformation()
-            {
-            var newWindow = window.open('', '_blank',);
-            var boldLimit = 2;
-            var urlLimit = 1;
-            newWindow.document.write("Numero medio de palabras por parrafo de la pagina: " + averageWords() + "<br><br>");
-            newWindow.document.write("Texto alternativo de las imagenes de la pagina:<br>" + imagesAlt() + "<br>");
-            newWindow.document.write("Dos primeros parrafos en negrita:<br>" + strongParrafo(boldLimit) + "<br>");
-            newWindow.document.write("URL del primer hiperenlace de la pagina:<br>" + linkURL(urlLimit));
-            }
-
-            function averageWords()
-            {
-            var sum = 0;
-            var parrafos = document.getElementsByTagName("p");
-            for (var i = 0; i < parrafos.length; i++)
-            {
-            //Para cada parrafo, dividimos las palabras y contamos cuantas hay
-            sum += parrafos[i].textContent.split(" ").length;
-            }
-
-            return sum / parrafos.length;
-            }
-
-            function imagesAlt()
-            {
-            var result = "";
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+        <script>
+    
+        $(document).ready(function(){
+                
+            var $newWindow = window.open('', '_blank',);
+            var $boldLimit = 2;
+            var $urlLimit = 1;
+            
+            //Calculamos la media de palabras
+            
+             var $sum = 0;
+             var $parrafos =  $("p");
+             for (var $i = 0; $i < $parrafos.length; $i++)
+                  {
+                  //Para cada parrafo, dividimos las palabras y contamos cuantas hay
+                  $sum += $parrafos.eq($i).text().split(" ").length;
+                  }
+                  
+            $($newWindow.document.body).append("Numero medio de palabras por parrafo de la pagina: " + $sum / $parrafos.length+"<br><br>");
+                       
+            //Mostrar atributo alt de cada imagen
+            
+            var $result = "";
             //Para cada imagen, mostramos su atributo alt
-            var images = document.getElementsByTagName('img');
-            for (var i = 0; i < images.length; i++)
+            var $images = $("img");
+            for (var $i = 0; $i < $images.length; $i++)
             {
-            result += "Imagen numero:" + i + " " + images[i].alt + "<br>";
+            $result += "Imagen numero:" + $i + " " + $images.eq($i).attr('alt')+ "<br>";
             }
-            return result;
-            }
-
-            function strongParrafo(limit)
+            $($newWindow.document.body).append("Texto alternativo de las imagenes de la pagina:<br>" +$result+ "<br>");
+            
+            
+            //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
+            
+            var $parrafos = $("p");
+            var $result = "";
+            for (var $i = 0; $i < $boldLimit; $i++)
             {
-                //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
-            var parrafos = document.getElementsByTagName("p");
-            var result = "";
-            for (var i = 0; i < limit; i++)
-            {
-            result += "<strong>" + parrafos[i].textContent + "</strong><br>";
-            }
-
-            return result;
+            $result += "<strong>" + $parrafos.eq($i).text() + "</strong><br>";
             }
 
-            function linkURL(limit)
-            {
-            var result = "";
+             $($newWindow.document.body).append("Dos primeros parrafos en negrita:<br>" + $result + "<br>");
+             
+             
+            //Cogemos tantos hiperenlaces como necesitemos y mostramos su atributo href  
+            
+        
+            var $result = "";
             //Cogemos tantos hiperenlaces como necesitemos y mostramos su atributo href 
-            var images = document.getElementsByTagName('a');
-            for (var i = 0; i < limit; i++)
+            var $images = $("a");
+            for (var $i = 0; $i < $urlLimit; $i++)
             {
-            result += "URL numero " + i + " : " + images[i].href + "<br>";
+            $result += "URL numero " + $i + " : " + $images.eq($i).attr("href") + "<br>";
             }
-            return result;
-            }
-
-
+            $($newWindow.document.body).append("URL del primer hiperenlace de la pagina:<br>" + $result);
+             
+                
+            });
+   
         </script>
         
         
     </head>
-    <body  onload="generateInformation()" class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-LaTeX_Introduction rootpage-LaTeX skin-vector action-view">		<div id="mw-page-base" class="noprint"></div>
+    <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-LaTeX_Introduction rootpage-LaTeX skin-vector action-view">		<div id="mw-page-base" class="noprint"></div>
+        
         <div id="mw-head-base" class="noprint"></div>
         <div id="content" class="mw-body" role="main">
             <a id="top"></a>
