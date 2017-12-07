@@ -12,21 +12,25 @@ Source: https://en.wikipedia.org/wiki/Microsoft_Windows
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
+          <script>
 
     $(document).ready(function(){
 
+    //Escondemos todas las images y le agregamos un boton 
     var $images = $("div img").hide();
     for (i = 0; i < $images.length; i++)
     {
-
+        //Guardamos la referencia a la imagen asociada
     var $button = $('<br> <input type="button" name=' + i + ' value="Toggle Imagen"/>');
     $images.eq(i).after($button);
     }
 
+    //Cuando hacemos click en uno de los botones, cogemos su imagen asociada y le hacemos el efecto toggle
     $("div :button").click(function(){
 
     $images.eq($(this).attr('name')).fadeToggle();
+    //Evitamos que cuando hacemos click en los botones nos intente redireccionar
+    event.preventDefault();
     
     });
     });
