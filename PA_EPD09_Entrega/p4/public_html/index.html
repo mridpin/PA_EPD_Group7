@@ -29,12 +29,13 @@ and open the template in the editor.
                     var listElementText = document.createTextNode(todaysNews[i][0]);
                     var listButton = document.createElement("button");
                     /*Add a clicable element to the list. With CSS, it can be made to look like a link <a>*/
-                    //listButton.href = "#";
                     /*https://stackoverflow.com/questions/6048561/setting-onclick-to-use-current-value-of-variable-in-loop*/
                     listButton.addEventListener("click", function (j) {
                         /*Crea una funcion anonima externa donde j es i para cada funcion interna. Con una sola no funciona*/
                         return function () {
                             swapNews(todaysNews[j], h3, p);
+                            clearInterval(interval);
+                            startInterval(j+1, h3, p); //j+1 so it starts rotating with the nextg news
                             return false;
                         };
                     }(i));
@@ -44,13 +45,8 @@ and open the template in the editor.
                 }
 
                 /*Rotate */
-                /*The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).*/
-                var i = 0;
-                /*In this case, it calls an anonimous function*/
-                var interval = setInterval(function () {
-                    swapNews(todaysNews[i], h3, p);
-                    i = (i + 1) % todaysNews.length;
-                }, 3000);
+                var i = 1;
+                startInterval(i, h3, p);
             }
             function swapNews(news, h3, p) {
                 // Fade out old content
@@ -66,6 +62,15 @@ and open the template in the editor.
                     $("#newsContent").fadeIn(500);
                     $("#newsHeader").fadeIn(500);
                 });
+            }
+            function startInterval(i, h3, p) {
+                //The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).
+                //In this case, it calls an anonimous function      
+                i = (i) % todaysNews.length; // Prevents index out of bounds when the list element selected is the last one
+                interval = setInterval(function () {
+                    swapNews(todaysNews[i], h3, p);
+                    i = (i + 1) % todaysNews.length;
+                }, 3000);
             }
         </script>
     </head>
