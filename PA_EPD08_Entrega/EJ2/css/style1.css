@@ -1,0 +1,15 @@
+
+table{
+    width: 100%;
+    text-align: center;
+}
+
+td{
+    padding: 4px;
+    background-color: white;
+}
+th{
+    padding: 4px;
+    font-weight: bold;
+    background-color: white;
+}
