@@ -186,7 +186,7 @@ function validaFormulario(){
             case "name":
                 if (!validationName(inputs[i])) {
                     console.log();
-                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Nombre.";
+                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Nombre, solo letras, no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
                 }else{
                     inputs[i].style.border = "none";
@@ -194,7 +194,7 @@ function validaFormulario(){
                 break;
             case "lastname":
                 if (!validationLastName(inputs[i])) {
-                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Apellidos.";
+                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Apellidos, solo letras, no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
                 }else{
                     inputs[i].style.border = "none";
@@ -203,7 +203,7 @@ function validaFormulario(){
                 break;
             case "tail":
                 if (!validationTail(inputs[i])) {
-                    errors +=inputs[i].parentNode.getAttribute("id") +"-Error campo Altura.";
+                    errors +=inputs[i].parentNode.getAttribute("id") +"-Error campo Altura, numerico 100-299, no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
                 }else{
                     inputs[i].style.border = "none";
@@ -212,7 +212,7 @@ function validaFormulario(){
                 break;
             case "state":
                 if (!validationState(inputs[i])) {
-                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Estado.";
+                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Estado, no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
 
                 }else{
@@ -222,7 +222,7 @@ function validaFormulario(){
                 break;
             case "web":
                 if (!validationWeb(inputs[i])) {
-                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Web.";
+                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Web, formato www.pagina.com/cadena , no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
                 }else{
                     inputs[i].style.border = "none";
@@ -231,7 +231,7 @@ function validaFormulario(){
                 break;
             case "number":
                 if (!validationNamber(inputs[i])) {
-                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Numero Telefono.";
+                    errors += inputs[i].parentNode.getAttribute("id") +"-Error campo Numero Telefono, numerico, 6XXXXXXXX, no puede estar vacío;";
                     inputs[i].style.border = "1px solid red";
                 }else{
                     inputs[i].style.border = "none";
@@ -244,7 +244,7 @@ function validaFormulario(){
     var select = document.getElementsByTagName("select");
     for (i = 0; i < select.length; i++) {
         if (!validationState(select[i])) {
-            errors += select[i].parentNode.getAttribute("id") +"-Error campo Estado.";
+            errors += select[i].parentNode.getAttribute("id") +"-Error campo Estado;";
             select[i].style.border = "1px solid red";
 
         }else{
@@ -266,7 +266,7 @@ function printErrors(){
     for (var i = 0; i < divErrorsRef.length; i++) {
         removeAllChilds(divErrorsRef[i]);
     }
-    var errorsArray = errors.split(".");
+    var errorsArray = errors.split(";");
 
     for (i = 0; i < divErrorsRef.length; i++) {
 

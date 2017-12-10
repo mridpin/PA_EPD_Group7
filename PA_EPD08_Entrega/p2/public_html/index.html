@@ -35,11 +35,20 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
         <!--
         Aqui empieza el codigo del problema
         -->
-        
+
         <script language="JavaScript">
 
             function generateInformation()
             {
+<<<<<<< HEAD
+            var newWindow = window.open('', '_blank', );
+            var boldLimit = 2;
+            var urlLimit = 1;
+            newWindow.document.write("Numero medio de palabras por parrafo de la pagina: " + averageWords() + "<br><br>");
+            newWindow.document.write("Texto alternativo de las imagenes de la pagina:<br>" + imagesAlt() + "<br>");
+            newWindow.document.write("Dos primeros parrafos en negrita:<br>" + strongParrafo(boldLimit) + "<br>");
+            newWindow.document.write("URL del primer hiperenlace de la pagina:<br>" + linkURL(urlLimit));
+=======
                 var newWindow = window.open('', '_blank',);
                 var boldLimit = 2;
                 var urlLimit = 1;
@@ -47,6 +56,7 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
                 newWindow.document.write("Texto alternativo de las imagenes de la pagina:<br>" + imagesAlt() + "<br>");
                 newWindow.document.write("Dos primeros parrafos en negrita:<br>" + strongParrafo(boldLimit) + "<br>");
                 newWindow.document.write("URL del primer hiperenlace de la pagina:<br>" + linkURL(urlLimit));
+>>>>>>> b6d94b1123dca4461e588c8a3a76754b3c76af4e
             }
 
             function averageWords()
@@ -76,6 +86,15 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
 
             function strongParrafo(limit)
             {
+<<<<<<< HEAD
+            //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
+            var parrafos = document.getElementsByTagName("p");
+            var result = "";
+            for (var i = 0; i < limit; i++)
+            {
+            result += "<strong>" + parrafos[i].textContent + "</strong><br>";
+            }
+=======
                     //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
                 var parrafos = document.getElementsByTagName("p");
                 var result = "";
@@ -83,6 +102,7 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
                 {
                     result += "<strong>" + parrafos[i].textContent + "</strong><br>";
                 }
+>>>>>>> b6d94b1123dca4461e588c8a3a76754b3c76af4e
 
                   return result;
             }
@@ -101,8 +121,8 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
 
 
         </script>
-        
-        
+
+
     </head>
     <body  onload="generateInformation()" class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-LaTeX_Introduction rootpage-LaTeX skin-vector action-view">		<div id="mw-page-base" class="noprint"></div>
         <div id="mw-head-base" class="noprint"></div>
@@ -517,7 +537,7 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
             <div style="clear: both;"></div>
         </div>
         <script>(window.RLQ = window.RLQ || []).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.044", "walltime":"0.141", "ppvisitednodes":{"value":738, "limit":1000000}, "ppgeneratednodes":{"value":0, "limit":1500000}, "postexpandincludesize":{"value":8512, "limit":2097152}, "templateargumentsize":{"value":445, "limit":2097152}, "expansiondepth":{"value":10, "limit":40}, "expensivefunctioncount":{"value":0, "limit":500}, "entityaccesscount":{"value":0, "limit":400}, "timingprofile":["100.00%   28.422      1 -total", " 70.72%   20.099      1 Template:LaTeX/Top", " 45.66%   12.976      1 Template:LaTeX/Contents", " 22.27%    6.330      2 Template:BookCat", " 20.93%    5.948      1 Template:LaTeX/Bottom", " 16.41%    4.665      2 Template:BookCat/default", "  9.83%    2.794      2 Template:BOOKCATEGORY", "  4.13%    1.175      2 Template:FULLBOOKNAME", "  3.46%    0.984      2 Template:IPA", "  3.35%    0.951      1 Template:LaTeX"]}, "cachereport":{"origin":"mw1239", "timestamp":"20171117212227", "ttl":1900800, "transientcontent":false}}}); });</script><script>(window.RLQ = window.RLQ || []).push(function(){mw.config.set({"wgBackendResponseTime":59, "wgHostname":"mw1319"}); });</script>
-        
-        
+
+
     </body>
 </html>

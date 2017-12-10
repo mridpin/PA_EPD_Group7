@@ -49,7 +49,7 @@ function isNumber(e) {
     var keynum = e.which;
 
     var keychar = String.fromCharCode(keynum);
-    return ((pnum.test(keychar) || keynum == 8 || keynum == 0) && fourDigits());
+    return ((pnum.test(keychar) || keynum === 8 || keynum === 0) && fourDigits());
 }
 
 function fourDigits(){

@@ -11,7 +11,6 @@ startGame(solutionDiv, gameDiv, errorsDiv);
 
 function startGame(solutionDiv, gameDiv, errorsDiv) {
     var word = prompt("Insert a word to guess");
-    // TODO: Regex the word
     createSolutionDiv(solutionDiv, word);
     createGameDiv(gameDiv, word);
     createErrorCounter(errorsDiv, word);
@@ -132,7 +131,7 @@ function checkIfWin(word) {
     var cells = document.getElementById("results").childNodes;
     var res = true;
     var i = 0;
-    while (i<word.length && res) {
+    while (i<=word.length && res) {
         if (cells[i].textContent === "") {
             res = false;
         }

@@ -32,7 +32,7 @@ and open the template in the editor.
                         return function () {
                             swapNews(todaysNews[j], h3, p);
                             clearInterval(interval);
-                            startInterval(j+1, h3, p); //j+1 so it starts rotating with the nextg news
+                            startInterval(j+1, h3, p); //j+1 so it starts rotating with the next news
                             return false;
                         };
                     }(i));
@@ -58,7 +58,7 @@ and open the template in the editor.
                 interval = setInterval(function () {
                     swapNews(todaysNews[i], h3, p);
                     i = (i + 1) % todaysNews.length;
-                }, 3000);
+                }, 10000);
             }
         </script>
     </head>
