@@ -31,6 +31,7 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
         <link rel="canonical" href="https://en.wikibooks.org/wiki/LaTeX/Introduction"/>
         <link rel="dns-prefetch" href="//login.wikimedia.org"/>
         <link rel="dns-prefetch" href="//meta.wikimedia.org" />
+        
         <!--
         Aqui empieza el codigo del problema
         -->
@@ -39,63 +40,63 @@ Source: https://en.wikibooks.org/wiki/LaTeX/Introduction
 
             function generateInformation()
             {
-            var newWindow = window.open('', '_blank',);
-            var boldLimit = 2;
-            var urlLimit = 1;
-            newWindow.document.write("Numero medio de palabras por parrafo de la pagina: " + averageWords() + "<br><br>");
-            newWindow.document.write("Texto alternativo de las imagenes de la pagina:<br>" + imagesAlt() + "<br>");
-            newWindow.document.write("Dos primeros parrafos en negrita:<br>" + strongParrafo(boldLimit) + "<br>");
-            newWindow.document.write("URL del primer hiperenlace de la pagina:<br>" + linkURL(urlLimit));
+                var newWindow = window.open('', '_blank',);
+                var boldLimit = 2;
+                var urlLimit = 1;
+                newWindow.document.write("Numero medio de palabras por parrafo de la pagina: " + averageWords() + "<br><br>");
+                newWindow.document.write("Texto alternativo de las imagenes de la pagina:<br>" + imagesAlt() + "<br>");
+                newWindow.document.write("Dos primeros parrafos en negrita:<br>" + strongParrafo(boldLimit) + "<br>");
+                newWindow.document.write("URL del primer hiperenlace de la pagina:<br>" + linkURL(urlLimit));
             }
 
             function averageWords()
             {
-            var sum = 0;
-            var parrafos = document.getElementsByTagName("p");
-            for (var i = 0; i < parrafos.length; i++)
-            {
-            //Para cada parrafo, dividimos las palabras y contamos cuantas hay
-            sum += parrafos[i].textContent.split(" ").length;
-            }
+                var sum = 0;
+                var parrafos = document.getElementsByTagName("p");
+                for (var i = 0; i < parrafos.length; i++)
+                {
+                //Para cada parrafo, dividimos las palabras y contamos cuantas hay
+                sum += parrafos[i].textContent.split(" ").length;
+                }
 
-            return sum / parrafos.length;
-            }
+                return sum / parrafos.length;
+                }
 
-            function imagesAlt()
-            {
-            var result = "";
-            //Para cada imagen, mostramos su atributo alt
-            var images = document.getElementsByTagName('img');
-            for (var i = 0; i < images.length; i++)
-            {
-            result += "Imagen numero:" + i + " " + images[i].alt + "<br>";
-            }
-            return result;
+                function imagesAlt()
+                {
+                    var result = "";
+                    //Para cada imagen, mostramos su atributo alt
+                    var images = document.getElementsByTagName('img');
+                    for (var i = 0; i < images.length; i++)
+                    {
+                        result += "Imagen numero:" + i + " " + images[i].alt + "<br>";
+                    }
+                return result;
             }
 
             function strongParrafo(limit)
             {
-                //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
-            var parrafos = document.getElementsByTagName("p");
-            var result = "";
-            for (var i = 0; i < limit; i++)
-            {
-            result += "<strong>" + parrafos[i].textContent + "</strong><br>";
-            }
+                    //Cogemos tantso parrafos como necesitemos y los introducimos en unas etiquetas <strong>
+                var parrafos = document.getElementsByTagName("p");
+                var result = "";
+                for (var i = 0; i < limit; i++)
+                {
+                    result += "<strong>" + parrafos[i].textContent + "</strong><br>";
+                }
 
-            return result;
+                  return result;
             }
 
             function linkURL(limit)
             {
-            var result = "";
-            //Cogemos tantos hiperenlaces como necesitemos y mostramos su atributo href 
-            var images = document.getElementsByTagName('a');
-            for (var i = 0; i < limit; i++)
-            {
-            result += "URL numero " + i + " : " + images[i].href + "<br>";
-            }
-            return result;
+                var result = "";
+                //Cogemos tantos hiperenlaces como necesitemos y mostramos su atributo href 
+                var images = document.getElementsByTagName('a');
+                for (var i = 0; i < limit; i++)
+                {
+                    result += "URL numero " + i + " : " + images[i].href + "<br>";
+                }
+                return result;
             }
 
 
