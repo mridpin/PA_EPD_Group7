@@ -1,7 +1,7 @@
 
 
 //GLOBAL VARIABLES  
-var size = 5; //Only square boards allowed because we are not savages
+var size = 25; //Only square boards allowed because we are not savages
 var boardContainer = document.getElementById("boardSection");
 /* board will hold the following values:
  *  0: water
