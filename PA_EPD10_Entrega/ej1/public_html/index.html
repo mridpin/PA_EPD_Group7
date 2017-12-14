@@ -18,7 +18,13 @@ and open the template in the editor.
             $(document).ready(function () {
                 var $img1 = $('#1').oriDomi({vPanels: 5, hPanels: 3, speed: 1200, ripple: 2, shadingIntensity: .5, perspective: 800, maxAngle: 40, shading: 'soft'});
                 
-                $img1.oriDomi('reveal', 45);
+                $('#1').addEventListener('mouseover',function(){
+                    $img1.oriDomi('reveal', 45);
+                },false);
+                
+                $('#1').addEventListener('mouseout',function(){
+                    $img1.reset();
+                },false)
                 
             });
         
