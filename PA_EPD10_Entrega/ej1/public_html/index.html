@@ -6,11 +6,38 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>EPD10 - EJ1</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="oridomi.js"></script>
+       
+        <script>
+
+
+            $(document).ready(function () {
+                var $img1 = $('#1').oriDomi({vPanels: 5, hPanels: 3, speed: 1200, ripple: 2, shadingIntensity: .5, perspective: 800, maxAngle: 40, shading: 'soft'});
+                
+                $img1.oriDomi('reveal', 45);
+                
+            });
+        
+
+
+        </script>
+
     </head>
     <body>
-        <div>TODO write content</div>
+
+        <img id="1" src="1.png" >
+
+        <br>
+
+        <img id="2" src="2.png">
+
+        <br>
+
+        <img id="3" src="3.png">
+
     </body>
 </html>
