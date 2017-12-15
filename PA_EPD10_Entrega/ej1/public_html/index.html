@@ -11,39 +11,42 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="oridomi.js"></script>
-       
+
         <script>
 
 
             $(document).ready(function () {
-                var $img1 = $('#1').oriDomi({vPanels: 5, hPanels: 3, speed: 1200, ripple: 2, shadingIntensity: .5, perspective: 800, maxAngle: 40, shading: 'soft'});
+                var $img1 = $('#1').oriDomi();
                 
-                $('#1').addEventListener('mouseover',function(){
-                    $img1.oriDomi('reveal', 45);
-                },false);
+                $img1.oriDomi('accordion',50);
+
+                $('#img-wrap').mouseenter(function(){
+                    $img1.oriDomi('accordion',0);
+                });
                 
-                $('#1').addEventListener('mouseout',function(){
-                    $img1.reset();
-                },false)
-                
-            });
-        
+                $('#img-wrap').mouseleave(function(){
+                $img1.oriDomi('accordion',50);
+             });
+
+            })
+
 
 
         </script>
 
     </head>
     <body>
-
-        <img id="1" src="1.png" >
-
-        <br>
-
-        <img id="2" src="2.png">
+        <div id="img-wrap">
+        <img id="1" src="http://www.ticarte.com/sites/su/users/290/teaser/687474703a2f2f707265636973696f6e2d736f6674776172652e636f6d2f77702d636f6e74656e742f75706c6f6164732f32.gif" >
+        </div>
 
         <br>
 
-        <img id="3" src="3.png">
+        <img id="2" src="http://www.desarrollolibre.net/public/images/logos/php.svg">
+
+        <br>
+
+        <img id="3" src="https://ih0.redbubble.net/image.349382841.8159/sticker,375x360-bg,ffffff.png">
 
     </body>
 </html>

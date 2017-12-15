@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>EPD10 - P1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="jquery.zoomooz.js"></script>
+        
+        <style>
+            
+            h1
+            {
+              border-style: solid;
+              background-color: cyan;
+              max-width: 10em;
+              text-align: center;
+              transform: rotate(10deg);
+            }
+            
+            .zoomButton{
+                border-style: solid;
+                max-width: 5em;
+                text-align: center;
+                border-width: 2px;
+            }
+            
+            img{
+                margin: 5em;
+            }
+            
+            div{
+                margin:auto;
+            }
+            
+            p{
+                border-style: dotted;
+                max-width: 5%;
+                padding: auto;
+                text-align: center;
+                margin: auto;
+                font-size: 20px;
+                margin-top: 5px;
+            }
+    
+            .zoomButton:hover{
+                background-color: lightgray;
+            }
+            
+            
+            
+        </style>
+        
+    </head>
+    <body>
+        <h1 class="zoomTarget" data-targetsize="0.60" data-scalemode="both" data-closeclick="true">Grupo 07 - EPD10 P1</h1>
+        
+        <div class="zoomViewport p1a">
+            
+            <div class="zoomContainer">
+                
+                <img class="zoomTarget" data-closeclick="true" data-scalemode="height" data-easing="linear" data-preservescroll="false" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/2000px-Apple_logo_black.svg.png" width="200">
+                <img class="zoomTarget" data-targetsize="0.2" data-duration="100" data-easing="ease-out" data-closeclick="true" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/600px-Windows_logo_-_2012.svg.png" width="200">
+                <img class="zoomTarget" data-scalemode="width" data-easing="ease-in-out" data-targetsize="1.0" data-preservescroll="true" data-closeclick="true" src="https://www.muylinux.com/wp-content/uploads/2011/04/LinuxMint.jpg" width="200">
+                
+            </div>           
+        </div>    
+            <div class="zoomButton" data-type="prev" data-root=".p1a">Previous</div>
+            <br>
+            <div class="zoomButton" data-type="next" data-root=".p1a">Next</div>
+            
+            
+         <div class="zoomViewport p1b">
+                <div class="zoomContainer">
+                    <p class="zoomTarget" data-targetsize="0.2" data-duration="200" data-scalemode="height" data-easing="ease-in" data-closeclick="true">This is</p>
+                    <p class="zoomTarget" data-targetsize="0.5" data-duration="300" data-easing="linear" data-scalemode="both" data-closeclick="true">a test</p>
+                    <p class="zoomTarget" data-targetsize="0.7" data-duration="400" data-scalemode="both" data-easing="ease" data-closeclick="true">between boxes</p>
+                    <p class="zoomTarget" data-targetsize="0.1" data-duration="50" data-preservescroll="false" data-easing="ease-in-out" data-closeclick="true">that ends here.</p>
+                </div>
+            </div>
+            
+            
+        
+    </body>
+</html>
