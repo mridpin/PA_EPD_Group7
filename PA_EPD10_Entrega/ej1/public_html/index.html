@@ -12,22 +12,55 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="oridomi.js"></script>
 
+        <style>
+            
+            .problema1{
+                display: block;
+                max-width: 80rem;
+                width: 100%;
+                min-width: 320px;
+                margin: 0 auto;
+                margin-bottom: 2rem;
+            }
+            
+            .img1{
+                color: white;
+                background-image: url("https://media.npr.org/assets/img/2017/06/15/istock-182747082-67513e4d2f9afc42710d06a802b9ee140321a3ac-s900-c85.jpg");
+                background-size: cover;
+                font-size: 5rem;
+                font-weight: bold;
+                letter-spacing: -0.3rem;
+                text-align: center; 
+            }
+            .img2{
+                font-family: fantasy;
+                color: white;
+                background-image: url("https://s-i.huffpost.com/gen/4784786/images/o-CODING-facebook.jpg");
+                background-size: cover;
+                font-size: 8rem;
+                font-weight:500;
+                text-align:justify;  
+            }
+            
+            .img3{
+                color: white;
+                background-image: url("https://media-cdn.tripadvisor.com/media/photo-s/0e/85/48/e6/seven-mile-beach-grand.jpg");
+                background-size: cover;
+                font-size: 5rem;
+                font-weight: bold;
+                letter-spacing: -0.3rem;
+                text-align: center; 
+            }
+
+        </style>
+
         <script>
 
 
             $(document).ready(function () {
-                var $img1 = $('#1').oriDomi();
-                
-                $img1.oriDomi('accordion',50);
-
-                $('#img-wrap').mouseenter(function(){
-                    $img1.oriDomi('accordion',0);
-                });
-                
-                $('#img-wrap').mouseleave(function(){
-                $img1.oriDomi('accordion',50);
-             });
-
+                $('.img1').oriDomi({vPanels: 3,hPanels:1,speed:600, ripple: 3,shadingIntensity:.3,perspective:500,maxAngel:20,shading:false}).oriDomi('accordion', 50);
+                $('.img2').oriDomi({vPanels: 30,hPanels:50,speed:1800, ripple: 6,shadingIntensity:.1,perspective:800,maxAngel:30,shading:'soft'}).oriDomi('stairs',-30);
+                $('.img3').oriDomi({vPanels: 20,hPanels:25,speed:100, ripple: 1,shadingIntensity:1,perspective:300,maxAngel:-40}).oriDomi('reveal',80);
             })
 
 
@@ -36,17 +69,22 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div id="img-wrap">
-        <img id="1" src="http://www.ticarte.com/sites/su/users/290/teaser/687474703a2f2f707265636973696f6e2d736f6674776172652e636f6d2f77702d636f6e74656e742f75706c6f6164732f32.gif" >
+
+        <div class="problema1 img1">
+            <h1>Grupo07 - EJ1</h1>
         </div>
 
         <br>
-
-        <img id="2" src="http://www.desarrollolibre.net/public/images/logos/php.svg">
+        
+        <div class="problema1 img2">
+            <p>Hello World!</p>
+        </div>
 
         <br>
-
-        <img id="3" src="https://ih0.redbubble.net/image.349382841.8159/sticker,375x360-bg,ffffff.png">
+        
+        <div class="problema1 img3">
+            <h2>This is the end of the website</h2>
+        </div>
 
     </body>
 </html>
